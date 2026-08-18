@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Relatório de Performance — Studio Hansi × WONDR Experience</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  html, body { background: #EDEBE5; }
+  body {
+    font-family: 'Inter', 'DejaVu Sans', Arial, -apple-system, sans-serif;
+    color: #1A1A1A;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .sheet {
+    background: #0A0A0A;
+    max-width: 820px;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 12px 32px rgba(0,0,0,0.14);
+  }
+
+  /* HERO */
+  .hero { position: relative; padding: 40px 40px 34px; overflow: hidden; }
+  .hero-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; }
+  .hero-tag { font-size: 11px; font-weight: 700; color: #FF0080; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .hero-headline-wrap { position: relative; }
+  h1.headline {
+    font-family: 'Anton', 'Arial Narrow', Impact, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 58px;
+    line-height: 0.92;
+    color: #FFFAD4;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+    max-width: 480px;
+  }
+  .hero-badge {
+    position: absolute;
+    top: 38px;
+    right: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .hero-badge img { width: 94px; height: 108px; object-fit: contain; flex-shrink: 0; }
+  .hb-text { text-align: left; line-height: 1.3; }
+  .hb-name { font-size: 15px; font-weight: 800; color: #FFFAD4; letter-spacing: 0.03em; white-space: nowrap; }
+  .hb-tag { font-size: 10.5px; font-weight: 500; color: #8A7F6A; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
+  .hero-sub { margin-top: 18px; font-size: 13.5px; color: #C9C4B4; font-weight: 500; }
+  .hero-sub strong { color: #FFFAD4; font-weight: 700; }
+
+  /* SECTIONS */
+  .content { padding: 8px 40px 36px; }
+  .platform-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 34px;
+    margin-bottom: 14px;
+  }
+  .platform-header:first-child { margin-top: 0; }
+  .platform-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .platform-dot.meta { background: #0082FB; }
+  .platform-dot.tiktok { background: #25F4EE; box-shadow: 0 0 0 1px #FE2C55 inset; }
+  .platform-dot.ga4 { background: #F9AB00; }
+  .platform-name {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #FFFAD4;
+  }
+  .platform-line { flex: 1; height: 1px; background: #232320; }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #FFFAD4;
+    margin-bottom: 14px;
+    margin-top: 30px;
+  }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .kpi-card { background: #FFFAD4; border-radius: 10px; padding: 15px 16px; min-width: 0; }
+  .kpi-card.alt { background: #FF0080; }
+  .kpi-card .label { font-size: 10.5px; font-weight: 700; color: #6B6248; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 5px; }
+  .kpi-card.alt .label { color: #FFE0EE; }
+  .kpi-card .value { font-size: 21px; font-weight: 800; color: #0A0A0A; }
+  .kpi-card.alt .value { color: #FFFAD4; }
+
+  .attention-note {
+    background: #1E1B10;
+    border: 1px solid #4A3F1E;
+    border-radius: 10px;
+    padding: 13px 16px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #E0C878;
+    line-height: 1.55;
+  }
+  .attention-note strong { color: #FFFAD4; }
+
+  .insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .insight-card { border-radius: 10px; padding: 16px; min-width: 0; }
+  .insight-card.win { background: #FFFAD4; }
+  .insight-card.risk { background: #FF0080; }
+  .insight-card .ititle { font-size: 12.5px; font-weight: 800; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.02em; }
+  .insight-card.win .ititle { color: #0A0A0A; }
+  .insight-card.risk .ititle { color: #FFFAD4; }
+  .insight-card .itext { font-size: 12px; line-height: 1.55; font-weight: 500; }
+  .insight-card.win .itext { color: #4A4433; }
+  .insight-card.risk .itext { color: #FFE0EE; }
+
+  .table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { width: 100%; min-width: 480px; border-collapse: separate; border-spacing: 0 6px; font-size: 12px; }
+  thead th {
+    text-align: left; padding: 0 12px 6px; color: #8A7F6A; font-weight: 700;
+    font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap;
+  }
+  thead th:not(:first-child), tbody td:not(:first-child) { text-align: right; }
+  tbody tr { background: #171714; }
+  tbody tr.top { background: #FFFAD4; }
+  tbody td { padding: 10px 12px; color: #D8D3C4; white-space: nowrap; font-weight: 500; }
+  tbody tr.top td { color: #0A0A0A; font-weight: 700; }
+  tbody td:first-child { border-radius: 8px 0 0 8px; text-align: left; }
+  tbody td:last-child { border-radius: 0 8px 8px 0; }
+
+  .footer { padding: 18px 40px 26px; border-top: 1px solid #232320; font-size: 10.5px; color: #6B6248; text-align: center; }
+
+  @media (max-width: 640px) {
+    body { padding: 20px 12px; }
+    .hero { padding: 28px 22px 26px; }
+    h1.headline { font-size: 38px; }
+    .hero-badge { top: 24px; right: 22px; gap: 6px; }
+    .hero-badge img { width: 52px; height: 60px; }
+    .hb-name { font-size: 10.5px; }
+    .hb-tag { font-size: 7.5px; }
+    .content { padding: 4px 22px 26px; }
+    .footer { padding: 16px 22px 22px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .kpi-card { padding: 12px; }
+    .kpi-card .value { font-size: 17px; }
+    .insights-grid { grid-template-columns: 1fr; }
+    .platform-name { font-size: 11.5px; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="hero">
+    <div class="hero-top">
+      <div class="hero-tag">Relatório de performance</div>
+    </div>
+
+    <div class="hero-headline-wrap">
+      <h1 class="headline">WONDR<br>EXPERIENCE</h1>
+    </div>
+
+    <div class="hero-badge">
+      <img src="hansi-logo.png" alt="Studio Hansi">
+      <div class="hb-text">
+        <div class="hb-name">STUDIO HANSI</div>
+        <div class="hb-tag">Creative + Performance</div>
+      </div>
+    </div>
+
+    <div class="hero-sub"><strong>Meta Ads + TikTok Ads + GA4</strong> &middot; 19 jul &mdash; 17 ago 2026 &middot; Amsterdam, Holanda</div>
+  </div>
+
+  <div class="content">
+
+    <div class="platform-header">
+      <div class="platform-dot meta"></div>
+      <div class="platform-name">Meta Ads</div>
+      <div class="platform-line"></div>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="label">Investimento</div><div class="value">€ 55,5 mil</div></div>
+      <div class="kpi-card"><div class="label">Impressões</div><div class="value">15,8 mi</div></div>
+      <div class="kpi-card"><div class="label">Alcance</div><div class="value">5,2 mi</div></div>
+      <div class="kpi-card"><div class="label">CTR</div><div class="value">1,28%</div></div>
+      <div class="kpi-card"><div class="label">CPM</div><div class="value">€ 3,52</div></div>
+      <div class="kpi-card alt"><div class="label">ROAS</div><div class="value">1,58x</div></div>
+      <div class="kpi-card"><div class="label">Compras</div><div class="value">1.138</div></div>
+      <div class="kpi-card"><div class="label">Valor gerado</div><div class="value">€ 87,5 mil</div></div>
+      <div class="kpi-card"><div class="label">CPA</div><div class="value">€ 48,81</div></div>
+    </div>
+
+    <div class="platform-header">
+      <div class="platform-dot tiktok"></div>
+      <div class="platform-name">TikTok Ads</div>
+      <div class="platform-line"></div>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="label">Investimento</div><div class="value">€ 40,2 mil</div></div>
+      <div class="kpi-card"><div class="label">Impressões</div><div class="value">18,4 mi</div></div>
+      <div class="kpi-card"><div class="label">CTR</div><div class="value">1,12%</div></div>
+      <div class="kpi-card"><div class="label">CPM</div><div class="value">€ 2,18</div></div>
+      <div class="kpi-card"><div class="label">Conversões</div><div class="value">12.337</div></div>
+      <div class="kpi-card alt"><div class="label">Custo/conversão</div><div class="value">€ 3,25</div></div>
+    </div>
+    <div class="attention-note">
+      <strong>Ponto de atenção:</strong> o custo por conversão do TikTok muda de patamar em 06/ago — cai de <strong>€ 9,40</strong> (19/jul–05/ago) para <strong>€ 1,59</strong> (06–17/ago), com o volume de conversões saltando de 2.627 para 9.710 no mesmo intervalo de dias. É um salto grande demais pra ser só otimização de campanha — provável mudança no evento de conversão/pixel. Vale confirmar qual evento está sendo contado antes de comparar este período com os anteriores.
+    </div>
+
+    <div class="platform-header">
+      <div class="platform-dot ga4"></div>
+      <div class="platform-name">Google Analytics 4</div>
+      <div class="platform-line"></div>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="label">Sessões</div><div class="value">292,9 mil</div></div>
+      <div class="kpi-card"><div class="label">Usuários</div><div class="value">279,9 mil</div></div>
+      <div class="kpi-card"><div class="label">Novos usuários</div><div class="value">270,3 mil</div></div>
+      <div class="kpi-card"><div class="label">Pageviews</div><div class="value">483,7 mil</div></div>
+      <div class="kpi-card"><div class="label">Taxa de rejeição</div><div class="value">76,5%</div></div>
+      <div class="kpi-card alt"><div class="label">Receita total</div><div class="value">€ 290,9 mil</div></div>
+      <div class="kpi-card"><div class="label">Conversões</div><div class="value">11.262</div></div>
+    </div>
+
+    <div class="section-title">Canais de aquisição (GA4)</div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Canal</th><th>Sessões</th><th>Conversões</th><th>Taxa conv.</th><th>Receita</th></tr>
+        </thead>
+        <tbody>
+          <tr class="top"><td>Paid Search</td><td>26.827</td><td>4.598</td><td>17,14%</td><td>€ 125.933</td></tr>
+          <tr class="top"><td>Organic Search</td><td>21.949</td><td>3.047</td><td>13,88%</td><td>€ 82.098</td></tr>
+          <tr><td>Direct</td><td>37.746</td><td>1.711</td><td>4,53%</td><td>€ 39.077</td></tr>
+          <tr><td>Cross-network</td><td>5.866</td><td>428</td><td>7,30%</td><td>€ 7.646</td></tr>
+          <tr><td>Paid Social</td><td>118.619</td><td>371</td><td>0,31%</td><td>€ 5.189</td></tr>
+          <tr><td>Organic Social</td><td>58.127</td><td>56</td><td>0,10%</td><td>€ 471</td></tr>
+          <tr><td>Paid Other</td><td>20.080</td><td>0</td><td>0,00%</td><td>€ 0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-title">Diagnóstico</div>
+    <div class="insights-grid">
+      <div class="insight-card win">
+        <div class="ititle">Paid Search é o motor de receita</div>
+        <div class="itext">Com só 4x menos sessões que o Paid Social, o Paid Search converte 17,1% (vs 0,3%) e sozinho responde por 43% de toda a receita rastreada no GA4 no período.</div>
+      </div>
+      <div class="insight-card risk">
+        <div class="ititle">TikTok: validar mudança de evento</div>
+        <div class="itext">Custo por conversão caiu 83% e o volume triplicou a partir de 06/ago — checar se o evento de otimização mudou antes de tratar isso como ganho real de eficiência.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">Studio Hansi &middot; Creative + Performance &middot; Relatório gerado em 18 de agosto de 2026</div>
+
+</div>
+</body>
+</html>
