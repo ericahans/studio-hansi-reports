@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { -webkit-text-size-adjust: 100%; }
-  html, body {
-    background: #EDEBE5;
-  }
+  html, body { background: #EDEBE5; }
   body {
-    font-family: 'DejaVu Sans', Arial, -apple-system, sans-serif;
+    font-family: 'Inter', 'DejaVu Sans', Arial, -apple-system, sans-serif;
     color: #1A1A1A;
     min-height: 100vh;
     display: flex;
@@ -18,92 +19,124 @@
     padding: 40px 20px;
   }
   .sheet {
-    background: #FFFFFF;
-    max-width: 780px;
+    background: #0A0A0A;
+    max-width: 820px;
     width: 100%;
-    padding: 32px 40px 40px;
-    border-radius: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 12px 32px rgba(0,0,0,0.14);
   }
 
-  .header {
-    background: #000000;
-    border-radius: 14px;
-    padding: 24px 28px;
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: 40px 40px 34px;
+    overflow: hidden;
+  }
+  .hero-top {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
+    align-items: flex-start;
     margin-bottom: 28px;
   }
-  .header .eyebrow {
+  .hero-tag {
     font-size: 11px;
-    color: #C9A8F5;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-    font-weight: 600;
-  }
-  .header h1 {
-    font-size: 22px;
-    color: #FFFFFF;
     font-weight: 700;
+    color: #FF0080;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
-  .header .sub {
+  .brand-mark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-mark img { width: 26px; height: 30px; flex-shrink: 0; }
+  .brand-mark .bm-text {
+    line-height: 1.25;
+  }
+  .brand-mark .bm-text .bm-name {
+    font-size: 12px;
+    font-weight: 800;
+    color: #FFFAD4;
+    letter-spacing: 0.03em;
+  }
+  .brand-mark .bm-text .bm-tag {
+    font-size: 9px;
+    font-weight: 500;
+    color: #8A7F6A;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .hero-headline-wrap {
+    position: relative;
+  }
+  h1.headline {
+    font-family: 'Anton', 'Arial Narrow', Impact, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 58px;
+    line-height: 0.92;
+    color: #FFFAD4;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+  }
+  .hero-badge {
+    position: absolute;
+    top: -4px;
+    right: 6px;
+    width: 108px;
+    height: 108px;
+  }
+  .hero-sub {
+    margin-top: 18px;
+    font-size: 13.5px;
+    color: #C9C4B4;
+    font-weight: 500;
+  }
+  .hero-sub strong { color: #FFFAD4; font-weight: 700; }
+
+  /* SECTIONS */
+  .content {
+    padding: 8px 40px 36px;
+  }
+  .section-title {
     font-size: 13px;
-    color: #E8D9FA;
-    margin-top: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #FFFAD4;
+    margin-bottom: 14px;
+    margin-top: 30px;
   }
-  .header .badge {
-    width: 46px;
-    height: 53px;
-    flex-shrink: 0;
-  }
-  .header .badge img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-  }
+  .section-title:first-child { margin-top: 0; }
 
   .kpi-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 28px;
+    gap: 10px;
   }
   .kpi-card {
-    background: #F5F4F1;
+    background: #FFFAD4;
     border-radius: 10px;
-    padding: 16px;
+    padding: 15px 16px;
     min-width: 0;
   }
   .kpi-card .label {
-    font-size: 11.5px;
-    color: #6B6A65;
-    margin-bottom: 6px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #6B6248;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 5px;
   }
   .kpi-card .value {
     font-size: 21px;
-    font-weight: 700;
-    color: #111111;
-    word-break: break-word;
+    font-weight: 800;
+    color: #0A0A0A;
   }
 
-  .section-title {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 14px;
-    color: #111111;
-  }
-
-  .chart-wrap {
-    margin-bottom: 28px;
-  }
+  .chart-wrap { margin-bottom: 4px; }
   .bar-row {
     display: flex;
     align-items: center;
@@ -111,10 +144,11 @@
     margin-bottom: 9px;
   }
   .bar-label {
-    width: 30%;
-    max-width: 165px;
-    font-size: 11.5px;
-    color: #444;
+    width: 32%;
+    max-width: 155px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #C9C4B4;
     text-align: right;
     flex-shrink: 0;
     overflow: hidden;
@@ -124,25 +158,21 @@
   .bar-track {
     flex: 1;
     min-width: 0;
-    background: #F0EFEC;
+    background: #232320;
     border-radius: 4px;
-    height: 20px;
+    height: 18px;
     position: relative;
     overflow: hidden;
   }
-  .bar-fill {
-    height: 100%;
-    border-radius: 4px;
-    background: #8A00EE;
-  }
-  .bar-fill.light { background: #C9A8F5; }
-  .bar-fill.faint { background: #E4DBF7; }
-  .bar-fill.dim { background: #D3D1C7; }
+  .bar-fill { height: 100%; border-radius: 4px; background: #FF0080; }
+  .bar-fill.light { background: #B34FF0; }
+  .bar-fill.faint { background: #5A3B78; }
+  .bar-fill.dim { background: #3A3A36; }
   .bar-value {
-    width: 56px;
-    font-size: 11.5px;
-    font-weight: 600;
-    color: #333;
+    width: 54px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #FFFAD4;
     flex-shrink: 0;
     text-align: right;
   }
@@ -150,212 +180,210 @@
   .insights-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 28px;
+    gap: 10px;
   }
   .insight-card {
     border-radius: 10px;
     padding: 16px;
     min-width: 0;
   }
-  .insight-card.win { background: #F3EAFC; }
-  .insight-card.risk { background: #FDEAF1; }
+  .insight-card.win { background: #FFFAD4; }
+  .insight-card.risk { background: #FF0080; }
   .insight-card .ititle {
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 12.5px;
+    font-weight: 800;
     margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
-  .insight-card.win .ititle { color: #26215C; }
-  .insight-card.risk .ititle { color: #4B1528; }
-  .insight-card .itext {
-    font-size: 12px;
-    line-height: 1.5;
-  }
-  .insight-card.win .itext { color: #3C3489; }
-  .insight-card.risk .itext { color: #72243E; }
+  .insight-card.win .ititle { color: #0A0A0A; }
+  .insight-card.risk .ititle { color: #FFFAD4; }
+  .insight-card .itext { font-size: 12px; line-height: 1.55; font-weight: 500; }
+  .insight-card.win .itext { color: #4A4433; }
+  .insight-card.risk .itext { color: #FFE0EE; }
 
   .table-scroll {
     width: 100%;
     overflow-x: auto;
-    margin-bottom: 24px;
     -webkit-overflow-scrolling: touch;
   }
-  table {
-    width: 100%;
-    min-width: 460px;
-    border-collapse: collapse;
-    font-size: 12px;
-  }
+  table { width: 100%; min-width: 460px; border-collapse: separate; border-spacing: 0 6px; font-size: 12px; }
   thead th {
     text-align: left;
-    padding: 8px 10px;
-    background: #111111;
-    color: #FFFFFF;
-    font-weight: 600;
-    font-size: 11.5px;
+    padding: 0 12px 6px;
+    color: #8A7F6A;
+    font-weight: 700;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
     white-space: nowrap;
   }
   thead th:last-child, tbody td:last-child { text-align: right; }
+  tbody tr { background: #171714; }
+  tbody tr.top { background: #FFFAD4; }
   tbody td {
-    padding: 8px 10px;
-    border-bottom: 1px solid #EDEBE6;
-    color: #333;
+    padding: 10px 12px;
+    color: #D8D3C4;
     white-space: nowrap;
+    font-weight: 500;
   }
-  tbody tr:nth-child(1) td, tbody tr:nth-child(2) td { font-weight: 600; color: #111; }
-
-  .next-steps {
-    background: #F5F4F1;
-    border-radius: 10px;
-    padding: 18px 20px;
-  }
-  .next-steps .section-title { margin-bottom: 10px; }
-  .next-steps ul { list-style: none; }
-  .next-steps li {
-    font-size: 12.5px;
-    color: #333;
-    padding: 6px 0;
-    display: flex;
-    gap: 8px;
-  }
-  .next-steps li::before {
-    content: "→";
-    color: #8A00EE;
-    font-weight: 700;
-  }
+  tbody tr.top td { color: #0A0A0A; font-weight: 700; }
+  tbody td:first-child { border-radius: 8px 0 0 8px; }
+  tbody td:last-child { border-radius: 0 8px 8px 0; }
 
   .footer {
-    margin-top: 28px;
-    padding-top: 14px;
-    border-top: 1px solid #EDEBE6;
+    padding: 18px 40px 26px;
+    border-top: 1px solid #232320;
     font-size: 10.5px;
-    color: #999;
+    color: #6B6248;
     text-align: center;
   }
 
   @media (max-width: 640px) {
-    body { padding: 16px 10px; }
-    .sheet { padding: 20px 16px; border-radius: 12px; }
-    .header { padding: 18px 20px; }
-    .header h1 { font-size: 19px; }
-    .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    body { padding: 20px 12px; }
+    .hero { padding: 28px 22px 26px; }
+    h1.headline { font-size: 38px; }
+    .hero-badge { width: 78px; height: 78px; top: -2px; right: -4px; }
+    .brand-mark .bm-text .bm-name { font-size: 10.5px; }
+    .content { padding: 4px 22px 26px; }
+    .footer { padding: 16px 22px 22px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
     .kpi-card { padding: 12px; }
     .kpi-card .value { font-size: 18px; }
     .insights-grid { grid-template-columns: 1fr; }
-    .bar-label { width: 34%; font-size: 10.5px; }
-    .bar-value { width: 46px; font-size: 10.5px; }
-  }
-
-  @media (max-width: 420px) {
-    .kpi-grid { grid-template-columns: 1fr 1fr; }
-    .header .badge { width: 38px; height: 38px; font-size: 16px; }
-    .bar-label { width: 38%; }
+    .bar-label { width: 36%; font-size: 10px; }
+    .bar-value { width: 44px; font-size: 10px; }
   }
 </style>
 </head>
 <body>
 <div class="sheet">
 
-  <div class="header">
-    <div>
-      <div class="eyebrow">Studio Hansi · Relatório de performance</div>
-      <h1>Dr. David Dentista</h1>
-      <div class="sub">Meta Ads &middot; 19 jul &mdash; 17 ago 2026 &middot; Azuay, Equador</div>
+  <div class="hero">
+    <div class="hero-top">
+      <div class="hero-tag">Relatório de performance</div>
+      <div class="brand-mark">
+        <img src="hansi-logo.png" alt="Studio Hansi">
+        <div class="bm-text">
+          <div class="bm-name">STUDIO HANSI</div>
+          <div class="bm-tag">Creative + Performance</div>
+        </div>
+      </div>
     </div>
-    <div class="badge"><img src="hansi-logo.png" alt="Studio Hansi"></div>
+
+    <div class="hero-headline-wrap">
+      <h1 class="headline">DR. DAVID<br>DENTISTA</h1>
+      <svg class="hero-badge" viewBox="0 0 130 130" role="img" aria-label="Studio Hansi, creative e performance">
+        <defs>
+          <path id="circlePath" d="M 65,65 m -48,0 a 48,48 0 1,1 96,0 a 48,48 0 1,1 -96,0" />
+        </defs>
+        <circle cx="65" cy="65" r="63" fill="#FF0080"/>
+        <text font-size="8.6" font-weight="700" letter-spacing="1.4" fill="#FFFAD4">
+          <textPath href="#circlePath" startOffset="2%">STUDIO HANSI • CREATIVE + PERFORMANCE •</textPath>
+        </text>
+        <path d="M65 38 L70.5 59.5 L92 65 L70.5 70.5 L65 92 L59.5 70.5 L38 65 L59.5 59.5 Z" fill="#FFFAD4"/>
+      </svg>
+    </div>
+
+    <div class="hero-sub"><strong>Meta Ads</strong> &middot; 19 jul &mdash; 17 ago 2026 &middot; Azuay, Equador</div>
   </div>
 
-  <div class="kpi-grid">
-    <div class="kpi-card"><div class="label">Investimento</div><div class="value">R$ 295,81</div></div>
-    <div class="kpi-card"><div class="label">Alcance</div><div class="value">57,7 mil</div></div>
-    <div class="kpi-card"><div class="label">Impressões</div><div class="value">130,2 mil</div></div>
-    <div class="kpi-card"><div class="label">Views em Reels</div><div class="value">45,3 mil</div></div>
-    <div class="kpi-card"><div class="label">CTR médio</div><div class="value">2,35%</div></div>
-    <div class="kpi-card"><div class="label">CPM médio</div><div class="value">R$ 2,27</div></div>
-  </div>
+  <div class="content">
 
-  <div class="chart-wrap">
+    <div class="section-title">Resultados do período</div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="label">Investimento</div><div class="value">R$ 295,81</div></div>
+      <div class="kpi-card"><div class="label">Alcance</div><div class="value">57,7 mil</div></div>
+      <div class="kpi-card"><div class="label">Impressões</div><div class="value">130,2 mil</div></div>
+      <div class="kpi-card"><div class="label">Views em Reels</div><div class="value">45,3 mil</div></div>
+      <div class="kpi-card"><div class="label">CTR médio</div><div class="value">2,35%</div></div>
+      <div class="kpi-card"><div class="label">CPM médio</div><div class="value">R$ 2,27</div></div>
+    </div>
+
     <div class="section-title">Views por criativo (Reels, 30 dias)</div>
+    <div class="chart-wrap">
+      <div class="bar-row">
+        <div class="bar-label">Dormir boca abierta</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+        <div class="bar-value">13.538</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Aparato personalizado</div>
+        <div class="bar-track"><div class="bar-fill" style="width:92.7%"></div></div>
+        <div class="bar-value">12.556</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Lengua</div>
+        <div class="bar-track"><div class="bar-fill light" style="width:56.8%"></div></div>
+        <div class="bar-value">7.684</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Diente de leche</div>
+        <div class="bar-track"><div class="bar-fill light" style="width:29.6%"></div></div>
+        <div class="bar-value">4.005</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Antibioticos</div>
+        <div class="bar-track"><div class="bar-fill light" style="width:12.4%"></div></div>
+        <div class="bar-value">1.675</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Dentista universal</div>
+        <div class="bar-track"><div class="bar-fill faint" style="width:4.8%"></div></div>
+        <div class="bar-value">654</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Miedo</div>
+        <div class="bar-track"><div class="bar-fill faint" style="width:2.8%"></div></div>
+        <div class="bar-value">385</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Enjague bucal</div>
+        <div class="bar-track"><div class="bar-fill faint" style="width:1.9%"></div></div>
+        <div class="bar-value">252</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Personaje</div>
+        <div class="bar-track"><div class="bar-fill dim" style="width:0.3%"></div></div>
+        <div class="bar-value">45</div>
+      </div>
+    </div>
 
-    <div class="bar-row">
-      <div class="bar-label">Dormir boca abierta</div>
-      <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
-      <div class="bar-value">13.538</div>
+    <div class="section-title">Diagnóstico</div>
+    <div class="insights-grid">
+      <div class="insight-card win">
+        <div class="ititle">Criativos vencedores</div>
+        <div class="itext">Dormir boca abierta e Aparato personalizado concentram quase metade do orçamento e têm o menor custo por view.</div>
+      </div>
+      <div class="insight-card risk">
+        <div class="ititle">Ponto de atenção</div>
+        <div class="itext">Frequência em 2,0-2,1 num alcance pequeno — sinal de início de saturação no público de Azuay.</div>
+      </div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">Aparato personalizado</div>
-      <div class="bar-track"><div class="bar-fill" style="width:92.7%"></div></div>
-      <div class="bar-value">12.556</div>
+
+    <div class="section-title">Ranking completo de criativos</div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Criativo</th><th>Views</th><th>Gasto</th><th>Custo/view</th></tr>
+        </thead>
+        <tbody>
+          <tr class="top"><td>Dormir boca abierta</td><td>13.538</td><td>R$ 39,07</td><td>R$ 0,0029</td></tr>
+          <tr class="top"><td>Aparato personalizado</td><td>12.556</td><td>R$ 39,95</td><td>R$ 0,0032</td></tr>
+          <tr><td>Lengua</td><td>7.684</td><td>R$ 35,44</td><td>R$ 0,0046</td></tr>
+          <tr><td>Diente de leche</td><td>4.005</td><td>R$ 18,34</td><td>R$ 0,0046</td></tr>
+          <tr><td>Antibioticos</td><td>1.675</td><td>R$ 6,94</td><td>R$ 0,0041</td></tr>
+          <tr><td>Dentista universal</td><td>654</td><td>R$ 3,23</td><td>R$ 0,0049</td></tr>
+          <tr><td>Miedo</td><td>385</td><td>R$ 1,63</td><td>R$ 0,0042</td></tr>
+          <tr><td>Enjague bucal</td><td>252</td><td>R$ 1,13</td><td>R$ 0,0045</td></tr>
+          <tr><td>Personaje</td><td>45</td><td>R$ 0,08</td><td>&mdash;</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">Lengua</div>
-      <div class="bar-track"><div class="bar-fill light" style="width:56.8%"></div></div>
-      <div class="bar-value">7.684</div>
-    </div>
-    <div class="bar-row">
-      <div class="bar-label">Diente de leche</div>
-      <div class="bar-track"><div class="bar-fill light" style="width:29.6%"></div></div>
-      <div class="bar-value">4.005</div>
-    </div>
-    <div class="bar-row">
-      <div class="bar-label">Antibioticos</div>
-      <div class="bar-track"><div class="bar-fill light" style="width:12.4%"></div></div>
-      <div class="bar-value">1.675</div>
-    </div>
-    <div class="bar-row">
-      <div class="bar-label">Dentista universal</div>
-      <div class="bar-track"><div class="bar-fill faint" style="width:4.8%"></div></div>
-      <div class="bar-value">654</div>
-    </div>
-    <div class="bar-row">
-      <div class="bar-label">Miedo</div>
-      <div class="bar-track"><div class="bar-fill faint" style="width:2.8%"></div></div>
-      <div class="bar-value">385</div>
-    </div>
-    <div class="bar-row">
-      <div class="bar-label">Enjague bucal</div>
-      <div class="bar-track"><div class="bar-fill faint" style="width:1.9%"></div></div>
-      <div class="bar-value">252</div>
-    </div>
-    <div class="bar-row">
-      <div class="bar-label">Personaje</div>
-      <div class="bar-track"><div class="bar-fill dim" style="width:0.3%"></div></div>
-      <div class="bar-value">45</div>
-    </div>
+
   </div>
 
-  <div class="insights-grid">
-    <div class="insight-card win">
-      <div class="ititle">&#127942; Criativos vencedores</div>
-      <div class="itext">Dormir boca abierta e Aparato personalizado concentram quase metade do orçamento e têm o menor custo por view.</div>
-    </div>
-    <div class="insight-card risk">
-      <div class="ititle">&#9888; Ponto de atenção</div>
-      <div class="itext">Frequência em 2,0-2,1 num alcance pequeno — sinal de início de saturação no público de Azuay.</div>
-    </div>
-  </div>
-
-  <div class="section-title">Ranking completo de criativos</div>
-  <div class="table-scroll">
-    <table>
-      <thead>
-        <tr><th>Criativo</th><th>Views</th><th>Gasto</th><th>Custo por view</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>&#129351; Dormir boca abierta</td><td>13.538</td><td>R$ 39,07</td><td>R$ 0,0029</td></tr>
-        <tr><td>&#129352; Aparato personalizado</td><td>12.556</td><td>R$ 39,95</td><td>R$ 0,0032</td></tr>
-        <tr><td>Lengua</td><td>7.684</td><td>R$ 35,44</td><td>R$ 0,0046</td></tr>
-        <tr><td>Diente de leche</td><td>4.005</td><td>R$ 18,34</td><td>R$ 0,0046</td></tr>
-        <tr><td>Antibioticos</td><td>1.675</td><td>R$ 6,94</td><td>R$ 0,0041</td></tr>
-        <tr><td>Dentista universal</td><td>654</td><td>R$ 3,23</td><td>R$ 0,0049</td></tr>
-        <tr><td>Miedo</td><td>385</td><td>R$ 1,63</td><td>R$ 0,0042</td></tr>
-        <tr><td>Enjague bucal</td><td>252</td><td>R$ 1,13</td><td>R$ 0,0045</td></tr>
-        <tr><td>Personaje</td><td>45</td><td>R$ 0,08</td><td>&mdash;</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="footer">Studio Hansi · Creative + Performance &middot; Relatório gerado em 18 de agosto de 2026</div>
+  <div class="footer">Studio Hansi &middot; Creative + Performance &middot; Relatório gerado em 18 de agosto de 2026</div>
 
 </div>
 </body>
