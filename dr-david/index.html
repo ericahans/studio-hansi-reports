@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DejaVu Sans', Arial, -apple-system, sans-serif;
+    background: #FFFFFF;
+    color: #1A1A1A;
+    padding: 32px 40px;
+    width: 780px;
+  }
+
+  .header {
+    background: #000000;
+    border-radius: 14px;
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+  .header .eyebrow {
+    font-size: 11px;
+    color: #C9A8F5;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .header h1 {
+    font-size: 22px;
+    color: #FFFFFF;
+    font-weight: 700;
+  }
+  .header .sub {
+    font-size: 13px;
+    color: #E8D9FA;
+    margin-top: 4px;
+  }
+  .header .badge {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #FF0080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #FFFFFF;
+    font-size: 20px;
+  }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .kpi-card {
+    background: #F5F4F1;
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .kpi-card .label {
+    font-size: 11.5px;
+    color: #6B6A65;
+    margin-bottom: 6px;
+  }
+  .kpi-card .value {
+    font-size: 21px;
+    font-weight: 700;
+    color: #111111;
+  }
+
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: #111111;
+  }
+
+  .chart-wrap {
+    margin-bottom: 28px;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 9px;
+  }
+  .bar-label {
+    width: 165px;
+    font-size: 11.5px;
+    color: #444;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    background: #F0EFEC;
+    border-radius: 4px;
+    height: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: #8A00EE;
+  }
+  .bar-fill.light { background: #C9A8F5; }
+  .bar-fill.faint { background: #E4DBF7; }
+  .bar-fill.dim { background: #D3D1C7; }
+  .bar-value {
+    width: 68px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #333;
+    flex-shrink: 0;
+  }
+
+  .insights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .insight-card {
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .insight-card.win { background: #F3EAFC; }
+  .insight-card.risk { background: #FDEAF1; }
+  .insight-card .ititle {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .insight-card.win .ititle { color: #26215C; }
+  .insight-card.risk .ititle { color: #4B1528; }
+  .insight-card .itext {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .insight-card.win .itext { color: #3C3489; }
+  .insight-card.risk .itext { color: #72243E; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    font-size: 12px;
+  }
+  thead th {
+    text-align: left;
+    padding: 8px 10px;
+    background: #111111;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 11.5px;
+  }
+  thead th:last-child, tbody td:last-child { text-align: right; }
+  tbody td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #EDEBE6;
+    color: #333;
+  }
+  tbody tr:nth-child(1) td, tbody tr:nth-child(2) td { font-weight: 600; color: #111; }
+
+  .next-steps {
+    background: #F5F4F1;
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .next-steps .section-title { margin-bottom: 10px; }
+  .next-steps ul { list-style: none; }
+  .next-steps li {
+    font-size: 12.5px;
+    color: #333;
+    padding: 6px 0;
+    display: flex;
+    gap: 8px;
+  }
+  .next-steps li::before {
+    content: "→";
+    color: #8A00EE;
+    font-weight: 700;
+  }
+
+  .footer {
+    margin-top: 28px;
+    padding-top: 14px;
+    border-top: 1px solid #EDEBE6;
+    font-size: 10.5px;
+    color: #999;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <div class="eyebrow">Studio Hansi · Relatório de performance</div>
+      <h1>Dr. David Dentista</h1>
+      <div class="sub">Meta Ads &middot; 19 jul &mdash; 17 ago 2026 &middot; Azuay, Equador</div>
+    </div>
+    <div class="badge">&#129688;</div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="label">Investimento</div><div class="value">R$ 295,81</div></div>
+    <div class="kpi-card"><div class="label">Alcance</div><div class="value">57,7 mil</div></div>
+    <div class="kpi-card"><div class="label">Impressões</div><div class="value">130,2 mil</div></div>
+    <div class="kpi-card"><div class="label">Views em Reels</div><div class="value">45,3 mil</div></div>
+    <div class="kpi-card"><div class="label">CTR médio</div><div class="value">2,35%</div></div>
+    <div class="kpi-card"><div class="label">CPM médio</div><div class="value">R$ 2,27</div></div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="section-title">Views por criativo (Reels, 30 dias)</div>
+
+    <div class="bar-row">
+      <div class="bar-label">Dormir boca abierta</div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+      <div class="bar-value">13.538</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Aparato personalizado</div>
+      <div class="bar-track"><div class="bar-fill" style="width:92.7%"></div></div>
+      <div class="bar-value">12.556</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Lengua</div>
+      <div class="bar-track"><div class="bar-fill light" style="width:56.8%"></div></div>
+      <div class="bar-value">7.684</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Diente de leche</div>
+      <div class="bar-track"><div class="bar-fill light" style="width:29.6%"></div></div>
+      <div class="bar-value">4.005</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Antibioticos</div>
+      <div class="bar-track"><div class="bar-fill light" style="width:12.4%"></div></div>
+      <div class="bar-value">1.675</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Dentista universal</div>
+      <div class="bar-track"><div class="bar-fill faint" style="width:4.8%"></div></div>
+      <div class="bar-value">654</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Miedo</div>
+      <div class="bar-track"><div class="bar-fill faint" style="width:2.8%"></div></div>
+      <div class="bar-value">385</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Enjague bucal</div>
+      <div class="bar-track"><div class="bar-fill faint" style="width:1.9%"></div></div>
+      <div class="bar-value">252</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Personaje</div>
+      <div class="bar-track"><div class="bar-fill dim" style="width:0.3%"></div></div>
+      <div class="bar-value">45</div>
+    </div>
+  </div>
+
+  <div class="insights-grid">
+    <div class="insight-card win">
+      <div class="ititle">&#127942; Criativos vencedores</div>
+      <div class="itext">Dormir boca abierta e Aparato personalizado concentram quase metade do orçamento e têm o menor custo por view.</div>
+    </div>
+    <div class="insight-card risk">
+      <div class="ititle">&#9888; Ponto de atenção</div>
+      <div class="itext">Frequência em 2,0-2,1 num alcance pequeno — sinal de início de saturação no público de Azuay.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Ranking completo de criativos</div>
+  <table>
+    <thead>
+      <tr><th>Criativo</th><th>Views</th><th>Gasto</th><th>Custo por view</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>&#129351; Dormir boca abierta</td><td>13.538</td><td>R$ 39,07</td><td>R$ 0,0029</td></tr>
+      <tr><td>&#129352; Aparato personalizado</td><td>12.556</td><td>R$ 39,95</td><td>R$ 0,0032</td></tr>
+      <tr><td>Lengua</td><td>7.684</td><td>R$ 35,44</td><td>R$ 0,0046</td></tr>
+      <tr><td>Diente de leche</td><td>4.005</td><td>R$ 18,34</td><td>R$ 0,0046</td></tr>
+      <tr><td>Antibioticos</td><td>1.675</td><td>R$ 6,94</td><td>R$ 0,0041</td></tr>
+      <tr><td>Dentista universal</td><td>654</td><td>R$ 3,23</td><td>R$ 0,0049</td></tr>
+      <tr><td>Miedo</td><td>385</td><td>R$ 1,63</td><td>R$ 0,0042</td></tr>
+      <tr><td>Enjague bucal</td><td>252</td><td>R$ 1,13</td><td>R$ 0,0045</td></tr>
+      <tr><td>Personaje</td><td>45</td><td>R$ 0,08</td><td>&mdash;</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer">Studio Hansi · Creative + Performance &middot; Relatório gerado em 18 de agosto de 2026</div>
+
+</body>
+</html>
