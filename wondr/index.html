@@ -32,7 +32,7 @@
   }
 
   /* HERO */
-  .hero { position: relative; padding: 40px 40px 34px; overflow: hidden; }
+  .hero { position: relative; padding: 40px 40px 26px; overflow: hidden; }
   .hero-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; }
   .hero-tag { font-size: 11px; font-weight: 700; color: #FF0080; letter-spacing: 0.08em; text-transform: uppercase; }
 
@@ -63,38 +63,41 @@
   .hero-sub { margin-top: 18px; font-size: 13.5px; color: #C9C4B4; font-weight: 500; }
   .hero-sub strong { color: #FFFAD4; font-weight: 700; }
 
+  /* PERIOD SELECTOR */
+  .period-selector {
+    display: flex;
+    gap: 6px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
+  .period-btn {
+    background: #171714;
+    border: 1px solid #2E2B24;
+    color: #8A7F6A;
+    font-family: inherit;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    letter-spacing: 0.01em;
+  }
+  .period-btn:hover { border-color: #4A3F1E; color: #C9C4B4; }
+  .period-btn.active { background: #FF0080; border-color: #FF0080; color: #FFFAD4; }
+
   /* SECTIONS */
   .content { padding: 8px 40px 36px; }
-  .platform-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 34px;
-    margin-bottom: 14px;
-  }
+  .platform-header { display: flex; align-items: center; gap: 10px; margin-top: 34px; margin-bottom: 14px; }
   .platform-header:first-child { margin-top: 0; }
   .platform-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
   .platform-dot.meta { background: #0082FB; }
   .platform-dot.tiktok { background: #25F4EE; box-shadow: 0 0 0 1px #FE2C55 inset; }
   .platform-dot.ga4 { background: #F9AB00; }
-  .platform-name {
-    font-size: 13px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #FFFAD4;
-  }
+  .platform-name { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #FFFAD4; }
   .platform-line { flex: 1; height: 1px; background: #232320; }
 
-  .section-title {
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #FFFAD4;
-    margin-bottom: 14px;
-    margin-top: 30px;
-  }
+  .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #FFFAD4; margin-bottom: 14px; margin-top: 30px; }
 
   .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .kpi-card { background: #FFFAD4; border-radius: 10px; padding: 15px 16px; min-width: 0; }
@@ -105,14 +108,8 @@
   .kpi-card.alt .value { color: #FFFAD4; }
 
   .attention-note {
-    background: #1E1B10;
-    border: 1px solid #4A3F1E;
-    border-radius: 10px;
-    padding: 13px 16px;
-    margin-top: 10px;
-    font-size: 12px;
-    color: #E0C878;
-    line-height: 1.55;
+    background: #1E1B10; border: 1px solid #4A3F1E; border-radius: 10px;
+    padding: 13px 16px; margin-top: 10px; font-size: 12px; color: #E0C878; line-height: 1.55;
   }
   .attention-note strong { color: #FFFAD4; }
 
@@ -129,10 +126,7 @@
 
   .table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   table { width: 100%; min-width: 480px; border-collapse: separate; border-spacing: 0 6px; font-size: 12px; }
-  thead th {
-    text-align: left; padding: 0 12px 6px; color: #8A7F6A; font-weight: 700;
-    font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap;
-  }
+  thead th { text-align: left; padding: 0 12px 6px; color: #8A7F6A; font-weight: 700; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap; }
   thead th:not(:first-child), tbody td:not(:first-child) { text-align: right; }
   tbody tr { background: #171714; }
   tbody tr.top { background: #FFFAD4; }
@@ -145,7 +139,7 @@
 
   @media (max-width: 640px) {
     body { padding: 20px 12px; }
-    .hero { padding: 28px 22px 26px; }
+    .hero { padding: 28px 22px 22px; }
     h1.headline { font-size: 38px; }
     .hero-badge { top: 24px; right: 22px; gap: 6px; }
     .hero-badge img { width: 52px; height: 60px; }
@@ -158,6 +152,7 @@
     .kpi-card .value { font-size: 17px; }
     .insights-grid { grid-template-columns: 1fr; }
     .platform-name { font-size: 11.5px; }
+    .period-btn { font-size: 10.5px; padding: 7px 11px; }
   }
 </style>
 </head>
@@ -181,7 +176,14 @@
       </div>
     </div>
 
-    <div class="hero-sub"><strong>Meta Ads + TikTok Ads + GA4</strong> &middot; 19 jul &mdash; 17 ago 2026 &middot; Amsterdam, Holanda</div>
+    <div class="hero-sub"><strong>Meta Ads + TikTok Ads + GA4</strong> &middot; <span id="dt-range">19 jul — 17 ago 2026</span> &middot; Amsterdam, Holanda</div>
+
+    <div class="period-selector" id="period-selector">
+      <button class="period-btn" data-period="7d">Últimos 7 dias</button>
+      <button class="period-btn" data-period="mtd">Mês atual</button>
+      <button class="period-btn active" data-period="30d">Últimos 30 dias</button>
+      <button class="period-btn" data-period="prev">Mês anterior</button>
+    </div>
   </div>
 
   <div class="content">
@@ -192,15 +194,15 @@
       <div class="platform-line"></div>
     </div>
     <div class="kpi-grid">
-      <div class="kpi-card"><div class="label">Investimento</div><div class="value">€ 55,5 mil</div></div>
-      <div class="kpi-card"><div class="label">Impressões</div><div class="value">15,8 mi</div></div>
-      <div class="kpi-card"><div class="label">Alcance</div><div class="value">5,2 mi</div></div>
-      <div class="kpi-card"><div class="label">CTR</div><div class="value">1,28%</div></div>
-      <div class="kpi-card"><div class="label">CPM</div><div class="value">€ 3,52</div></div>
-      <div class="kpi-card alt"><div class="label">ROAS</div><div class="value">1,58x</div></div>
-      <div class="kpi-card"><div class="label">Compras</div><div class="value">1.138</div></div>
-      <div class="kpi-card"><div class="label">Valor gerado</div><div class="value">€ 87,5 mil</div></div>
-      <div class="kpi-card"><div class="label">CPA</div><div class="value">€ 48,81</div></div>
+      <div class="kpi-card"><div class="label">Investimento</div><div class="value" id="m-spend">—</div></div>
+      <div class="kpi-card"><div class="label">Impressões</div><div class="value" id="m-impr">—</div></div>
+      <div class="kpi-card"><div class="label">Alcance</div><div class="value" id="m-reach">—</div></div>
+      <div class="kpi-card"><div class="label">CTR</div><div class="value" id="m-ctr">—</div></div>
+      <div class="kpi-card"><div class="label">CPM</div><div class="value" id="m-cpm">—</div></div>
+      <div class="kpi-card alt"><div class="label">ROAS</div><div class="value" id="m-roas">—</div></div>
+      <div class="kpi-card"><div class="label">Compras</div><div class="value" id="m-purchases">—</div></div>
+      <div class="kpi-card"><div class="label">Valor gerado</div><div class="value" id="m-value">—</div></div>
+      <div class="kpi-card"><div class="label">CPA</div><div class="value" id="m-cpa">—</div></div>
     </div>
 
     <div class="platform-header">
@@ -209,16 +211,14 @@
       <div class="platform-line"></div>
     </div>
     <div class="kpi-grid">
-      <div class="kpi-card"><div class="label">Investimento</div><div class="value">€ 40,2 mil</div></div>
-      <div class="kpi-card"><div class="label">Impressões</div><div class="value">18,4 mi</div></div>
-      <div class="kpi-card"><div class="label">CTR</div><div class="value">1,12%</div></div>
-      <div class="kpi-card"><div class="label">CPM</div><div class="value">€ 2,18</div></div>
-      <div class="kpi-card"><div class="label">Conversões</div><div class="value">12.337</div></div>
-      <div class="kpi-card alt"><div class="label">Custo/conversão</div><div class="value">€ 3,25</div></div>
+      <div class="kpi-card"><div class="label">Investimento</div><div class="value" id="t-spend">—</div></div>
+      <div class="kpi-card"><div class="label">Impressões</div><div class="value" id="t-impr">—</div></div>
+      <div class="kpi-card"><div class="label">CTR</div><div class="value" id="t-ctr">—</div></div>
+      <div class="kpi-card"><div class="label">CPM</div><div class="value" id="t-cpm">—</div></div>
+      <div class="kpi-card"><div class="label">Conversões</div><div class="value" id="t-conv">—</div></div>
+      <div class="kpi-card alt"><div class="label">Custo/conversão</div><div class="value" id="t-costconv">—</div></div>
     </div>
-    <div class="attention-note">
-      <strong>Ponto de atenção:</strong> o custo por conversão do TikTok muda de patamar em 06/ago — cai de <strong>€ 9,40</strong> (19/jul–05/ago) para <strong>€ 1,59</strong> (06–17/ago), com o volume de conversões saltando de 2.627 para 9.710 no mesmo intervalo de dias. É um salto grande demais pra ser só otimização de campanha — provável mudança no evento de conversão/pixel. Vale confirmar qual evento está sendo contado antes de comparar este período com os anteriores.
-    </div>
+    <div class="attention-note" id="t-note" style="display:none;"></div>
 
     <div class="platform-header">
       <div class="platform-dot ga4"></div>
@@ -226,13 +226,13 @@
       <div class="platform-line"></div>
     </div>
     <div class="kpi-grid">
-      <div class="kpi-card"><div class="label">Sessões</div><div class="value">292,9 mil</div></div>
-      <div class="kpi-card"><div class="label">Usuários</div><div class="value">279,9 mil</div></div>
-      <div class="kpi-card"><div class="label">Novos usuários</div><div class="value">270,3 mil</div></div>
-      <div class="kpi-card"><div class="label">Pageviews</div><div class="value">483,7 mil</div></div>
-      <div class="kpi-card"><div class="label">Taxa de rejeição</div><div class="value">76,5%</div></div>
-      <div class="kpi-card alt"><div class="label">Receita total</div><div class="value">€ 290,9 mil</div></div>
-      <div class="kpi-card"><div class="label">Conversões</div><div class="value">11.262</div></div>
+      <div class="kpi-card"><div class="label">Sessões</div><div class="value" id="g-sessions">—</div></div>
+      <div class="kpi-card"><div class="label">Usuários</div><div class="value" id="g-users">—</div></div>
+      <div class="kpi-card"><div class="label">Novos usuários</div><div class="value" id="g-newusers">—</div></div>
+      <div class="kpi-card"><div class="label">Pageviews</div><div class="value" id="g-pv">—</div></div>
+      <div class="kpi-card"><div class="label">Taxa de rejeição</div><div class="value" id="g-bounce">—</div></div>
+      <div class="kpi-card alt"><div class="label">Receita total</div><div class="value" id="g-revenue">—</div></div>
+      <div class="kpi-card"><div class="label">Conversões</div><div class="value" id="g-conv">—</div></div>
     </div>
 
     <div class="section-title">Canais de aquisição (GA4)</div>
@@ -241,27 +241,19 @@
         <thead>
           <tr><th>Canal</th><th>Sessões</th><th>Conversões</th><th>Taxa conv.</th><th>Receita</th></tr>
         </thead>
-        <tbody>
-          <tr class="top"><td>Paid Search</td><td>26.827</td><td>4.598</td><td>17,14%</td><td>€ 125.933</td></tr>
-          <tr class="top"><td>Organic Search</td><td>21.949</td><td>3.047</td><td>13,88%</td><td>€ 82.098</td></tr>
-          <tr><td>Direct</td><td>37.746</td><td>1.711</td><td>4,53%</td><td>€ 39.077</td></tr>
-          <tr><td>Cross-network</td><td>5.866</td><td>428</td><td>7,30%</td><td>€ 7.646</td></tr>
-          <tr><td>Paid Social</td><td>118.619</td><td>371</td><td>0,31%</td><td>€ 5.189</td></tr>
-          <tr><td>Organic Social</td><td>58.127</td><td>56</td><td>0,10%</td><td>€ 471</td></tr>
-          <tr><td>Paid Other</td><td>20.080</td><td>0</td><td>0,00%</td><td>€ 0</td></tr>
-        </tbody>
+        <tbody id="channels-body"></tbody>
       </table>
     </div>
 
     <div class="section-title">Diagnóstico</div>
     <div class="insights-grid">
       <div class="insight-card win">
-        <div class="ititle">Paid Search é o motor de receita</div>
-        <div class="itext">Com só 4x menos sessões que o Paid Social, o Paid Search converte 17,1% (vs 0,3%) e sozinho responde por 43% de toda a receita rastreada no GA4 no período.</div>
+        <div class="ititle" id="win-title">Paid Search é o motor de receita</div>
+        <div class="itext" id="win-text">—</div>
       </div>
       <div class="insight-card risk">
         <div class="ititle">TikTok: validar mudança de evento</div>
-        <div class="itext">Custo por conversão caiu 83% e o volume triplicou a partir de 06/ago — checar se o evento de otimização mudou antes de tratar isso como ganho real de eficiência.</div>
+        <div class="itext" id="risk-text">Sem alterações significativas neste período.</div>
       </div>
     </div>
 
@@ -270,5 +262,86 @@
   <div class="footer">Studio Hansi &middot; Creative + Performance &middot; Relatório gerado em 18 de agosto de 2026</div>
 
 </div>
+
+<script>
+const PERIODS = {"7d": {"label": "Últimos 7 dias", "range": "11 — 17 ago 2026", "meta": {"spend": "€ 14,3 mil", "spend_raw": 14276, "impr": "2,8 mi", "reach": "1,3 mi", "ctr": "2,31%", "cpm": "€ 5,07", "roas": "1,72x", "purchases": "314", "value": "€ 24,6 mil", "cpa": "€ 45,47"}, "tiktok": {"spend": "€ 9,4 mil", "impr": "4,7 mi", "ctr": "1,48%", "cpm": "€ 2,00", "conv": "5.987", "costconv": "€ 1,56"}, "ga4": {"sessions": "95,5 mil", "users": "91,5 mil", "newusers": "86,9 mil", "pv": "137,8 mil", "bounce": "82,7%", "revenue": "€ 70,3 mil", "conv": "2.754"}, "channels": [{"name": "Paid Social", "sessions": 40226, "conv": 96, "cr": 0.24, "revenue": 1107}, {"name": "Organic Social", "sessions": 23757, "conv": 21, "cr": 0.09, "revenue": 264}, {"name": "Direct", "sessions": 10482, "conv": 395, "cr": 3.77, "revenue": 8574}, {"name": "Paid Other", "sessions": 7171, "conv": 0, "cr": 0.0, "revenue": 0}, {"name": "Paid Search", "sessions": 6059, "conv": 1192, "cr": 19.67, "revenue": 33796}, {"name": "Organic Search", "sessions": 4708, "conv": 692, "cr": 14.7, "revenue": 18394}, {"name": "Cross-network", "sessions": 1346, "conv": 88, "cr": 6.54, "revenue": 1598}], "win_title": "Paid Search é o motor de receita", "win_text": "Com 6.6x menos sessões que o Paid Social, o Paid Search converte 19.7% (vs 0.24%) e responde por 48% de toda a receita rastreada no GA4.", "tiktok_note": null}, "mtd": {"label": "Mês atual", "range": "01 — 17 ago 2026", "meta": {"spend": "€ 33,3 mil", "spend_raw": 33319, "impr": "7,4 mi", "reach": "2,9 mi", "ctr": "1,98%", "cpm": "€ 4,50", "roas": "1,69x", "purchases": "732", "value": "€ 56,2 mil", "cpa": "€ 45,52"}, "tiktok": {"spend": "€ 22,5 mil", "impr": "10,6 mi", "ctr": "1,19%", "cpm": "€ 2,12", "conv": "10.738", "costconv": "€ 2,09"}, "ga4": {"sessions": "199,7 mil", "users": "189,9 mil", "newusers": "183,7 mil", "pv": "307,1 mil", "bounce": "80,1%", "revenue": "€ 172,1 mil", "conv": "6.693"}, "channels": [{"name": "Paid Social", "sessions": 73115, "conv": 213, "cr": 0.29, "revenue": 2862}, {"name": "Organic Social", "sessions": 48822, "conv": 37, "cr": 0.08, "revenue": 470}, {"name": "Direct", "sessions": 23802, "conv": 1010, "cr": 4.24, "revenue": 22637}, {"name": "Paid Other", "sessions": 20080, "conv": 0, "cr": 0.0, "revenue": 0}, {"name": "Paid Search", "sessions": 15490, "conv": 2789, "cr": 18.01, "revenue": 76714}, {"name": "Organic Search", "sessions": 12058, "conv": 1807, "cr": 14.99, "revenue": 48230}, {"name": "Cross-network", "sessions": 3484, "conv": 246, "cr": 7.06, "revenue": 4664}], "win_title": "Paid Search é o motor de receita", "win_text": "Com 4.7x menos sessões que o Paid Social, o Paid Search converte 18.0% (vs 0.29%) e responde por 45% de toda a receita rastreada no GA4.", "tiktok_note": "O custo por conversão do TikTok muda de patamar em 06/ago — dentro deste período, cai de ~€9-14 para ~€1,5-2 por conversão, com o volume triplicando. Provável mudança no evento de conversão/pixel, não necessariamente ganho real de eficiência."}, "30d": {"label": "Últimos 30 dias", "range": "19 jul — 17 ago 2026", "meta": {"spend": "€ 55,5 mil", "spend_raw": 55543, "impr": "15,8 mi", "reach": "5,2 mi", "ctr": "1,28%", "cpm": "€ 3,52", "roas": "1,57x", "purchases": "1.138", "value": "€ 87,5 mil", "cpa": "€ 48,81"}, "tiktok": {"spend": "€ 40,2 mil", "impr": "18,4 mi", "ctr": "1,12%", "cpm": "€ 2,18", "conv": "12.337", "costconv": "€ 3,25"}, "ga4": {"sessions": "292,9 mil", "users": "279,9 mil", "newusers": "270,3 mil", "pv": "483,7 mil", "bounce": "76,5%", "revenue": "€ 290,9 mil", "conv": "11.262"}, "channels": [{"name": "Paid Social", "sessions": 118619, "conv": 371, "cr": 0.31, "revenue": 5188}, {"name": "Organic Social", "sessions": 58127, "conv": 56, "cr": 0.1, "revenue": 470}, {"name": "Direct", "sessions": 37746, "conv": 1711, "cr": 4.53, "revenue": 39077}, {"name": "Paid Search", "sessions": 26827, "conv": 4598, "cr": 17.14, "revenue": 125933}, {"name": "Organic Search", "sessions": 21949, "conv": 3047, "cr": 13.88, "revenue": 82098}, {"name": "Paid Other", "sessions": 20080, "conv": 0, "cr": 0.0, "revenue": 0}, {"name": "Cross-network", "sessions": 5866, "conv": 428, "cr": 7.3, "revenue": 7646}], "win_title": "Paid Search é o motor de receita", "win_text": "Com 4.4x menos sessões que o Paid Social, o Paid Search converte 17.1% (vs 0.31%) e responde por 43% de toda a receita rastreada no GA4.", "tiktok_note": "O custo por conversão do TikTok muda de patamar em 06/ago — cai de € 9,40 (19/jul–05/ago) para € 1,59 (06–17/ago), com o volume de conversões saltando de 2.627 para 9.710 no mesmo intervalo de dias. Vale confirmar qual evento está sendo contado antes de comparar este período com os anteriores."}, "prev": {"label": "Mês anterior", "range": "01 — 31 jul 2026", "meta": {"spend": "€ 41,6 mil", "spend_raw": 41589, "impr": "15,5 mi", "reach": "4,6 mi", "ctr": "0,61%", "cpm": "€ 2,69", "roas": "1,26x", "purchases": "705", "value": "€ 52,2 mil", "cpa": "€ 58,99"}, "tiktok": {"spend": "€ 37,0 mil", "impr": "16,4 mi", "ctr": "1,24%", "cpm": "€ 2,25", "conv": "2.392", "costconv": "€ 15,45"}, "ga4": {"sessions": "218,0 mil", "users": "203,8 mil", "newusers": "196,4 mil", "pv": "379,1 mil", "bounce": "72,5%", "revenue": "€ 244,4 mil", "conv": "9.778"}, "channels": [{"name": "Paid Social", "sessions": 109213, "conv": 282, "cr": 0.26, "revenue": 3884}, {"name": "Direct", "sessions": 33891, "conv": 1539, "cr": 4.54, "revenue": 33572}, {"name": "Paid Search", "sessions": 23865, "conv": 4058, "cr": 17.0, "revenue": 108076}, {"name": "Organic Search", "sessions": 20220, "conv": 2557, "cr": 12.65, "revenue": 65876}, {"name": "Organic Social", "sessions": 18831, "conv": 46, "cr": 0.24, "revenue": 97}, {"name": "Cross-network", "sessions": 5501, "conv": 378, "cr": 6.87, "revenue": 7095}], "win_title": "Paid Search é o motor de receita", "win_text": "Com 4.6x menos sessões que o Paid Social, o Paid Search converte 17.0% (vs 0.26%) e responde por 44% de toda a receita rastreada no GA4.", "tiktok_note": "Este período é inteiramente anterior à mudança de evento observada em 06/ago/2026 — os números aqui refletem a definição de conversão antiga (custo por conversão mais alto, ~€15,45 em média)."}}
+;
+
+function fmtEUR(n) {
+  return '€ ' + Math.round(n).toLocaleString('pt-BR');
+}
+
+function render(key) {
+  const p = PERIODS[key];
+  if (!p) return;
+
+  document.getElementById('dt-range').textContent = p.range;
+
+  const m = p.meta;
+  document.getElementById('m-spend').textContent = m.spend;
+  document.getElementById('m-impr').textContent = m.impr;
+  document.getElementById('m-reach').textContent = m.reach;
+  document.getElementById('m-ctr').textContent = m.ctr;
+  document.getElementById('m-cpm').textContent = m.cpm;
+  document.getElementById('m-roas').textContent = m.roas;
+  document.getElementById('m-purchases').textContent = m.purchases;
+  document.getElementById('m-value').textContent = m.value;
+  document.getElementById('m-cpa').textContent = m.cpa;
+
+  const t = p.tiktok;
+  document.getElementById('t-spend').textContent = t.spend;
+  document.getElementById('t-impr').textContent = t.impr;
+  document.getElementById('t-ctr').textContent = t.ctr;
+  document.getElementById('t-cpm').textContent = t.cpm;
+  document.getElementById('t-conv').textContent = t.conv;
+  document.getElementById('t-costconv').textContent = t.costconv;
+
+  const noteEl = document.getElementById('t-note');
+  if (p.tiktok_note) {
+    noteEl.style.display = 'block';
+    noteEl.innerHTML = '<strong>Ponto de atenção:</strong> ' + p.tiktok_note;
+  } else {
+    noteEl.style.display = 'none';
+  }
+
+  const g = p.ga4;
+  document.getElementById('g-sessions').textContent = g.sessions;
+  document.getElementById('g-users').textContent = g.users;
+  document.getElementById('g-newusers').textContent = g.newusers;
+  document.getElementById('g-pv').textContent = g.pv;
+  document.getElementById('g-bounce').textContent = g.bounce;
+  document.getElementById('g-revenue').textContent = g.revenue;
+  document.getElementById('g-conv').textContent = g.conv;
+
+  // Channel table — sort by revenue desc, highlight top 2
+  const sorted = [...p.channels].sort((a, b) => b.revenue - a.revenue);
+  const tbody = document.getElementById('channels-body');
+  tbody.innerHTML = '';
+  sorted.forEach((c, i) => {
+    const tr = document.createElement('tr');
+    if (i < 2) tr.className = 'top';
+    tr.innerHTML = `<td>${c.name}</td><td>${c.sessions.toLocaleString('pt-BR')}</td><td>${c.conv.toLocaleString('pt-BR')}</td><td>${c.cr.toFixed(2).replace('.', ',')}%</td><td>${fmtEUR(c.revenue)}</td>`;
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById('win-title').textContent = p.win_title;
+  document.getElementById('win-text').textContent = p.win_text;
+  document.getElementById('risk-text').textContent = p.tiktok_note || 'Sem anomalias relevantes identificadas neste período.';
+
+  // update active button
+  document.querySelectorAll('.period-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.period === key);
+  });
+}
+
+document.getElementById('period-selector').addEventListener('click', (e) => {
+  const btn = e.target.closest('.period-btn');
+  if (!btn) return;
+  render(btn.dataset.period);
+});
+
+render('30d');
+</script>
+
 </body>
 </html>
