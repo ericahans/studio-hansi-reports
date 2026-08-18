@@ -64,8 +64,9 @@
     top: 38px;
     right: 40px;
     display: flex;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
   .hero-badge img {
     width: 62px;
@@ -73,7 +74,7 @@
     object-fit: contain;
     flex-shrink: 0;
   }
-  .hb-text { text-align: right; line-height: 1.25; }
+  .hb-text { text-align: left; line-height: 1.25; }
   .hb-name {
     font-size: 12px;
     font-weight: 800;
@@ -244,7 +245,7 @@
     body { padding: 20px 12px; }
     .hero { padding: 28px 22px 26px; }
     h1.headline { font-size: 38px; }
-    .hero-badge { top: 24px; right: 22px; gap: 6px; }
+    .hero-badge { top: 24px; right: 22px; gap: 4px; }
     .hero-badge img { width: 40px; height: 46px; }
     .hb-name { font-size: 9.5px; }
     .hb-tag { font-size: 7px; }
@@ -272,11 +273,11 @@
     </div>
 
     <div class="hero-badge">
+      <img src="hansi-logo.png" alt="Studio Hansi">
       <div class="hb-text">
         <div class="hb-name">STUDIO HANSI</div>
         <div class="hb-tag">Creative + Performance</div>
       </div>
-      <img src="hansi-logo.png" alt="Studio Hansi">
     </div>
 
     <div class="hero-sub"><strong>Meta Ads</strong> &middot; 19 jul &mdash; 17 ago 2026 &middot; Azuay, Equador</div>
