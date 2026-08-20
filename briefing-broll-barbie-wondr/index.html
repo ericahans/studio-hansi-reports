@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shooting Brief — B-Roll Scenes | Barbie The Dream Experience & WONDR Experience</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --black:#000000;
+    --purple:#8A00EE;
+    --pink:#FF0080;
+    --cream:#FDF6DC;
+    --bg:#FFFFFF;
+    --gray-line:#ECECEC;
+    --gray-text:#5A5A5A;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--black);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .page{
+    max-width:1000px;
+    margin:0 auto;
+    padding:56px 40px 80px;
+  }
+
+  /* HEADER */
+  .brandmark{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:40px;
+  }
+  .brandmark .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:linear-gradient(135deg,var(--purple),var(--pink));
+  }
+  .brandmark span{
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--black);
+  }
+
+  .hero{
+    position:relative;
+    border-radius:28px;
+    padding:44px 40px;
+    background:linear-gradient(120deg,var(--purple) 0%, var(--pink) 100%);
+    color:var(--cream);
+    overflow:hidden;
+    margin-bottom:36px;
+  }
+  .hero .eyebrow{
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    font-weight:700;
+    opacity:.85;
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-size:38px;
+    line-height:1.08;
+    font-weight:800;
+    margin:0 0 14px;
+    letter-spacing:-0.01em;
+  }
+  .hero p{
+    font-size:15px;
+    line-height:1.5;
+    max-width:560px;
+    margin:0;
+    opacity:.92;
+  }
+  .hero .arrow{
+    position:absolute;
+    right:34px;
+    top:34px;
+    font-size:30px;
+    opacity:.5;
+  }
+
+  /* GENERAL DIRECTION */
+  .section-label{
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--purple);
+    margin:0 0 14px;
+  }
+
+  .rules{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:20px;
+  }
+  .rule-card{
+    border:1px solid var(--gray-line);
+    border-radius:18px;
+    padding:16px 18px;
+    font-size:14px;
+    line-height:1.45;
+    color:var(--black);
+  }
+  .rule-card b{ color:var(--pink); }
+
+  .safe-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--black);
+    color:var(--cream);
+    border-radius:18px;
+    padding:16px 20px;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:48px;
+  }
+  .safe-area .badge{
+    flex:none;
+    background:var(--pink);
+    color:#fff;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.06em;
+    padding:5px 10px;
+    border-radius:8px;
+  }
+
+  /* VENUE BLOCKS */
+  .venue{
+    margin-bottom:44px;
+  }
+  .venue-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:6px;
+  }
+  .venue-head h2{
+    font-size:24px;
+    font-weight:800;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .venue-head .tag{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:4px 10px;
+    border-radius:999px;
+    color:#fff;
+  }
+  .barbie .tag{ background:var(--pink); }
+  .wondr .tag{ background:var(--purple); }
+  .venue-sub{
+    font-size:13px;
+    color:var(--gray-text);
+    margin:0 0 22px;
+  }
+
+  .rooms{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+  .room{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:18px;
+    align-items:start;
+    border:1px solid var(--gray-line);
+    border-radius:18px;
+    padding:16px 20px;
+  }
+  .room.hook{
+    border-color:transparent;
+    background:linear-gradient(0deg,#fff,#fff) padding-box,
+               linear-gradient(120deg,var(--purple),var(--pink)) border-box;
+    border:2px solid transparent;
+  }
+  .room.missing{
+    border-style:dashed;
+  }
+  .room-name{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:15px;
+    font-weight:700;
+  }
+  .star{ color:var(--pink); font-size:14px; }
+  .room-desc{
+    font-size:14px;
+    line-height:1.5;
+    color:#2b2b2b;
+  }
+  .room-desc.empty{
+    color:var(--gray-text);
+    font-style:italic;
+  }
+  .ref-link{
+    color:var(--purple);
+    text-decoration:none;
+    font-weight:600;
+    border-bottom:1px solid var(--purple);
+  }
+
+  /* ATTENTION BOX */
+  .attention{
+    background:var(--cream);
+    border-radius:22px;
+    padding:28px 32px;
+    margin-top:12px;
+  }
+  .attention .section-label{ color:var(--black); }
+  .attention ol{
+    margin:0;
+    padding-left:20px;
+    font-size:14px;
+    line-height:1.6;
+  }
+  .attention li{ margin-bottom:8px; }
+  .attention li:last-child{ margin-bottom:0; }
+
+  /* FOOTER */
+  .footer{
+    margin-top:56px;
+    padding-top:20px;
+    border-top:1px solid var(--gray-line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:12px;
+    color:var(--gray-text);
+  }
+  .footer .grad-text{
+    font-weight:800;
+    background:linear-gradient(120deg,var(--purple),var(--pink));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  @media (max-width:680px){
+    .rules{ grid-template-columns:1fr; }
+    .room{ grid-template-columns:1fr; }
+    .hero h1{ font-size:28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="brandmark">
+    <div class="dot"></div>
+    <span>Studio Hansi · Creative + Performance</span>
+  </div>
+
+  <div class="hero">
+    <div class="arrow">↘</div>
+    <div class="eyebrow">Shooting Brief · B-Roll Scenes</div>
+    <h1>Barbie The Dream Experience<br>&amp; WONDR Experience</h1>
+    <p>Family-focused b-roll direction — grandma, mom &amp; kids interacting across both venues. Kid is always the protagonist.</p>
+  </div>
+
+  <div class="section-label">General direction</div>
+  <div class="rules">
+    <div class="rule-card">Movement and interaction that feels real, <b>without</b> messing up or damaging the set.</div>
+    <div class="rule-card">Grandma and mom <b>mimicking what the kids would do</b> (e.g. diving into the ball pit).</div>
+    <div class="rule-card">Cross-generational interaction: <b>adult helps kid</b> (helmet) and <b>kid helps adult</b> (hat on grandma).</div>
+    <div class="rule-card">Whole family in frame, interacting with the environment <b>and</b> exchanging happy looks — the classic "grandma in love with her grandchild" look.</div>
+    <div class="rule-card">Barbie → pretend to be <b>"playing"</b> (driving, camping).</div>
+    <div class="rule-card">WONDR → prioritize the rooms with the strongest <b>visual hook</b>: Kaleidoscope and WONDRscope.</div>
+  </div>
+
+  <div class="safe-area">
+    <div class="badge">Mandatory</div>
+    Kid is always the protagonist of the scene · Respect the <strong>9:16 safe area</strong> in every framing
+  </div>
+
+  <!-- BARBIE -->
+  <div class="venue barbie">
+    <div class="venue-head">
+      <h2>Barbie The Dream Experience</h2>
+      <div class="tag">4 of 12 rooms briefed</div>
+    </div>
+    <p class="venue-sub">Rooms with a specific interaction call-out below. Remaining rooms follow the general direction only.</p>
+    <div class="rooms">
+      <div class="room">
+        <div class="room-name">Barbie DreamHouse</div>
+        <div class="room-desc">Capture every possible interaction with the house objects — sliding down, swinging (ref: <a class="ref-link" href="https://www.instagram.com/p/Db3slKNsori/" target="_blank">IG post</a>) — close-ups on each object.</div>
+      </div>
+      <div class="room">
+        <div class="room-name">Pre-show / 1959 Barbie</div>
+        <div class="room-desc">Grandma pretending to work at the desk; kid comes over and "plays office" with her.</div>
+      </div>
+      <div class="room">
+        <div class="room-name">Rocket / Astronaut Barbie</div>
+        <div class="room-desc">Mom helps kid put on the helmet; kids playing in the rocket; grandma and mom "piloting" — capture every possible interaction.</div>
+      </div>
+      <div class="room">
+        <div class="room-name">Barbie and the Rockers</div>
+        <div class="room-desc">Kids drive, mom and grandparents ride as passengers.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WONDR -->
+  <div class="venue wondr">
+    <div class="venue-head">
+      <h2>WONDR Experience</h2>
+      <div class="tag">12 of 16 rooms briefed</div>
+    </div>
+    <p class="venue-sub">★ = priority visual-hook rooms.</p>
+    <div class="rooms">
+      <div class="room">
+        <div class="room-name">Ball Pit</div>
+        <div class="room-desc">Grandma, mom and kids jumping together, holding hands.</div>
+      </div>
+      <div class="room">
+        <div class="room-name">Teddy Bears</div>
+        <div class="room-desc">Sitting together, hugging.</div>
+      </div>
+      <div class="room">
+        <div class="room-name">Rainbow Tunnel</div>
+        <div class="room-desc">Walking in backwards, holding hands.</div>
+      </div>
+      <div class="room">
+        <div class="room-name">Cloud</div>
+        <div class="room-desc">Kids in awe looking up at the sky; adults pointing up as if "explaining".</div>
+      </div>
+      <div class="room hook">
+        <div class="room-name"><span class="star">★</span> WONDRscope</div>
+        <div class="room-desc">Wonder, dancing, spinning.</div>
+      </div>
+      <div class="room hook">
+        <div class="room-name"><span class="star">★</span> Kaleidoscope</div>
+        <div class="room-desc">Wonder, dancing, spinning.</div>
+      </div>
+      <div class="room">
+        <div class="room-name">Karaoke</div>
+        <div class="room-desc">Family singing / dancing, pretending to be rock stars.</div>
+      </div>
+      <div class="room">
+        <div class="room-name">Bouncy Castle</div>
+        <div class="room-desc">Kid jumping; grandma watching by the edge; kid comes over to hug her.</div>
+      </div>
+      <div class="room">
+        <div class="room-name">Kawaii</div>
+        <div class="room-desc">Whole family inside the machine; kids playing with the controls.</div>
+      </div>
+      <div class="room">
+        <div class="room-name">Marshmallow Pool</div>
+        <div class="room-desc">Grandma/mom submerged + kids laughing around them; whole family submerged; tossing marshmallows up (without going wild).</div>
+      </div>
+      <div class="room missing">
+        <div class="room-name">Confetti</div>
+        <div class="room-desc empty">No suggestion given in the original brief — needs a quick direction before shoot day.</div>
+      </div>
+      <div class="room">
+        <div class="room-name">Sparkle Box</div>
+        <div class="room-desc">Kids drawing on the wall; mom and grandma drawing along.</div>
+      </div>
+      <div class="room">
+        <div class="room-name">SpongeBob Special <span style="font-weight:400;color:var(--gray-text);">(2 rooms)</span></div>
+        <div class="room-desc">Kids in awe interacting with the environment; adults also play with the objects, but always with the kid in frame.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Shooting Brief · B-Roll Scenes — internal use</span>
+    <span class="grad-text">Studio Hansi</span>
+  </div>
+
+</div>
+</body>
+</html>
