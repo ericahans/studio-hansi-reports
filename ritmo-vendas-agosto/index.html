@@ -22,6 +22,7 @@
     --cream-35:rgba(253,246,220,0.35);
     --line:rgba(253,246,220,0.12);
     --mint:#28E0B0;
+    --amber:#FFB020;
     --grad: linear-gradient(120deg, var(--violet), var(--pink));
   }
 
@@ -202,6 +203,15 @@
     background:var(--mint);
     box-shadow:0 0 0 4px rgba(40,224,176,0.18);
   }
+  .status-pill.warn{
+    background:rgba(255,176,32,0.1);
+    border:1px solid rgba(255,176,32,0.35);
+    color:var(--amber);
+  }
+  .status-pill.warn .pulse{
+    background:var(--amber);
+    box-shadow:0 0 0 4px rgba(255,176,32,0.18);
+  }
 
   /* ---------- SECTION ---------- */
   section{ margin-top:48px; }
@@ -214,7 +224,6 @@
   .section-head .arrow{
     font-size:20px;
     color:var(--pink);
-    transform:rotate(0deg);
   }
   .section-head h2{
     font-size:22px;
@@ -239,7 +248,7 @@
 
   table{
     width:100%;
-    min-width:560px;
+    min-width:620px;
     border-collapse:collapse;
     font-size:14.5px;
   }
@@ -277,6 +286,11 @@
     box-shadow:0 0 0 4px rgba(40,224,176,0.18);
     flex-shrink:0;
   }
+  .sit.warn{ color:var(--amber); }
+  .sit.warn .pulse{
+    background:var(--amber);
+    box-shadow:0 0 0 4px rgba(255,176,32,0.18);
+  }
   .muted{ color:var(--cream-60); }
 
   /* ---------- ATTENTION ---------- */
@@ -291,6 +305,9 @@
     border-radius:18px;
     padding:22px 22px 20px;
   }
+  .attn-card.hot{
+    border-color:rgba(255,176,32,0.4);
+  }
   .attn-card .num{
     display:inline-block;
     font-size:12px;
@@ -300,6 +317,9 @@
     padding:4px 10px;
     border-radius:100px;
     margin-bottom:14px;
+  }
+  .attn-card.hot .num{
+    background:var(--amber);
   }
   .attn-card p{
     margin:0;
@@ -348,7 +368,7 @@
       <span>·</span>
       <span>Fonte: Fever Zone</span>
       <span>·</span>
-      <span>Corte: <b>20/08/2026</b> (dia 20 de 31 — 64,5% do mês decorrido)</span>
+      <span>Corte: <b>23/08/2026</b> (dia 23 de 31 — 74,2% do mês decorrido) · atualizado 24/08</span>
     </p>
   </header>
 
@@ -357,40 +377,40 @@
 
     <div class="brand-card">
       <div class="brand-name">Wondr Experience</div>
-      <div class="pct">66,6%</div>
+      <div class="pct">76,0%</div>
       <div class="pct-label">da meta de agosto atingida</div>
 
       <div class="track">
-        <div class="marker" style="left:64.5%"><span>mês: 64,5%</span></div>
-        <div class="fill" style="width:66.6%"></div>
+        <div class="marker" style="left:74.2%"><span>mês: 74,2%</span></div>
+        <div class="fill" style="width:76%"></div>
       </div>
 
       <div class="figures">
-        <div>Vendido<b>13.324</b></div>
+        <div>Vendido<b>15.206</b></div>
         <div>Meta<b>20.000</b></div>
-        <div>Faltam<b>6.676</b></div>
+        <div>Faltam<b>4.794</b></div>
       </div>
 
-      <span class="status-pill"><span class="pulse"></span>~2 p.p. à frente do ritmo do mês</span>
+      <span class="status-pill warn"><span class="pulse"></span>Média 4d (581,75/dia) abaixo do necessário (599/dia)</span>
     </div>
 
     <div class="brand-card">
       <div class="brand-name">Barbie The Dream Experience</div>
-      <div class="pct">66,5%</div>
+      <div class="pct">76,4%</div>
       <div class="pct-label">da meta de agosto atingida</div>
 
       <div class="track">
-        <div class="marker" style="left:64.5%"><span>mês: 64,5%</span></div>
-        <div class="fill" style="width:66.5%"></div>
+        <div class="marker" style="left:74.2%"><span>mês: 74,2%</span></div>
+        <div class="fill" style="width:76.4%"></div>
       </div>
 
       <div class="figures">
-        <div>Vendido<b>11.972</b></div>
+        <div>Vendido<b>13.756</b></div>
         <div>Meta<b>18.000</b></div>
-        <div>Faltam<b>6.028</b></div>
+        <div>Faltam<b>4.244</b></div>
       </div>
 
-      <span class="status-pill"><span class="pulse"></span>~2 p.p. à frente do ritmo do mês</span>
+      <span class="status-pill"><span class="pulse"></span>Ainda acima do necessário, folga apertando</span>
     </div>
 
   </div>
@@ -408,7 +428,7 @@
         <thead>
           <tr>
             <th>Marca</th>
-            <th>Necessário / dia</th>
+            <th>Necessário / dia (8d restantes)</th>
             <th>Média 7d</th>
             <th>Média 4d</th>
             <th>Situação</th>
@@ -417,17 +437,17 @@
         <tbody>
           <tr>
             <td class="brand">WONDR</td>
-            <td>607</td>
-            <td>694,9</td>
-            <td>732</td>
-            <td><span class="sit"><span class="pulse"></span>Tranquilo — folga de ~15–20%</span></td>
+            <td>599</td>
+            <td>646,1</td>
+            <td>581,75</td>
+            <td><span class="sit warn"><span class="pulse"></span>Atenção — ritmo recente abaixo do necessário</span></td>
           </tr>
           <tr>
             <td class="brand">Barbie</td>
-            <td>548</td>
-            <td>592,9</td>
-            <td>622</td>
-            <td><span class="sit"><span class="pulse"></span>Tranquilo — folga de ~8–13%</span></td>
+            <td>530</td>
+            <td>591,6</td>
+            <td>549</td>
+            <td><span class="sit"><span class="pulse"></span>Acima, mas margem caiu de +125 pra +18,5/dia</span></td>
           </tr>
         </tbody>
       </table>
@@ -439,17 +459,17 @@
   <section>
     <div class="section-head">
       <span class="arrow">↗</span>
-      <h2>únicos pontos de atenção</h2>
+      <h2>pontos de atenção</h2>
     </div>
 
     <div class="attn-grid">
-      <div class="attn-card">
+      <div class="attn-card hot">
         <span class="num">01</span>
-        <p>Ambas as marcas dependem de <b>compra de última hora</b> (D0/D-3 concentra grande parte do volume, como já visto no perfil de comprador). Se a mídia paga cair de ritmo nos próximos dias, o efeito aparece rápido nas vendas.</p>
+        <p><b>WONDR virou zona de atenção.</b> A média dos últimos 4 dias fechados (581,75/dia) já está abaixo do necessário (599/dia), revertendo a aceleração vista há 4 dias. Restam só 8 dias — vale revisar o ritmo de mídia paga essa semana.</p>
       </div>
       <div class="attn-card">
         <span class="num">02</span>
-        <p>Vale <b>repetir esse check em ~3–4 dias</b> (por volta de 24/08) pra confirmar que a aceleração se mantém — principalmente considerando o fim de semana de <b>28–30/08</b>, última janela grande do mês.</p>
+        <p><b>Barbie segue à frente</b>, mas a folga caiu de +125/dia pra +18,5/dia. O fim de semana de <b>28–30/08</b> é a última janela grande do mês pras duas marcas — o resultado dele decide se a meta fica tranquila ou aperta de verdade.</p>
       </div>
     </div>
   </section>
