@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ritmo de Vendas — Agosto 2026</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000000;
+    --panel:#0c0c0f;
+    --panel-2:#121016;
+    --violet:#8A00EE;
+    --pink:#FF0080;
+    --cream:#FDF6DC;
+    --cream-60:rgba(253,246,220,0.62);
+    --cream-35:rgba(253,246,220,0.35);
+    --line:rgba(253,246,220,0.12);
+    --mint:#28E0B0;
+    --amber:#FFB020;
+    --grad: linear-gradient(120deg, var(--violet), var(--pink));
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    background:var(--black);
+    color:var(--cream);
+    font-family:'Inter', -apple-system, 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .page{
+    max-width:980px;
+    margin:0 auto;
+    padding:56px 32px 80px;
+  }
+
+  /* ---------- HEADER ---------- */
+  .eyebrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--cream-60);
+    margin-bottom:22px;
+  }
+  .eyebrow .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--grad);
+  }
+
+  header h1{
+    font-size:40px;
+    font-weight:800;
+    letter-spacing:-0.02em;
+    margin:0 0 10px;
+    line-height:1.08;
+  }
+  header .sub{
+    font-size:15px;
+    color:var(--cream-60);
+    margin:0 0 40px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 18px;
+  }
+  header .sub b{ color:var(--cream); font-weight:600; }
+
+  /* ---------- HERO CARDS ---------- */
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-bottom:14px;
+  }
+
+  .brand-card{
+    position:relative;
+    background:linear-gradient(160deg, var(--panel-2), var(--panel));
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:28px 26px 26px;
+    overflow:hidden;
+  }
+  .brand-card::before{
+    content:"";
+    position:absolute;
+    top:-40%; right:-30%;
+    width:220px; height:220px;
+    background:var(--grad);
+    filter:blur(70px);
+    opacity:.28;
+    border-radius:50%;
+    pointer-events:none;
+  }
+
+  .brand-card .brand-name{
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--cream-60);
+    margin-bottom:14px;
+  }
+
+  .brand-card .pct{
+    font-size:56px;
+    font-weight:800;
+    letter-spacing:-0.03em;
+    line-height:1;
+    margin-bottom:4px;
+    background:var(--grad);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  .brand-card .pct-label{
+    font-size:13px;
+    color:var(--cream-60);
+    margin-bottom:20px;
+  }
+
+  /* ticket-style progress track */
+  .track{
+    position:relative;
+    height:10px;
+    border-radius:6px;
+    background:rgba(253,246,220,0.08);
+    margin-bottom:10px;
+    overflow:visible;
+  }
+  .track .fill{
+    height:100%;
+    border-radius:6px;
+    background:var(--grad);
+    position:relative;
+  }
+  .track .fill::after{
+    content:"";
+    position:absolute;
+    top:50%; right:-4px;
+    width:12px; height:12px;
+    background:var(--black);
+    border:2px solid var(--panel);
+    border-radius:50%;
+    transform:translateY(-50%);
+  }
+  .track .marker{
+    position:absolute;
+    top:-4px;
+    width:2px; height:18px;
+    background:rgba(253,246,220,0.4);
+  }
+  .track .marker span{
+    position:absolute;
+    top:-20px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:10px;
+    color:var(--cream-35);
+    white-space:nowrap;
+  }
+
+  .brand-card .figures{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:var(--cream-60);
+    margin-top:18px;
+    margin-bottom:18px;
+  }
+  .brand-card .figures b{
+    display:block;
+    font-size:17px;
+    color:var(--cream);
+    font-weight:700;
+    margin-top:2px;
+  }
+
+  .status-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 14px;
+    border-radius:100px;
+    background:rgba(40,224,176,0.1);
+    border:1px solid rgba(40,224,176,0.35);
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--mint);
+  }
+  .status-pill .pulse{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--mint);
+    box-shadow:0 0 0 4px rgba(40,224,176,0.18);
+  }
+  .status-pill.warn{
+    background:rgba(255,176,32,0.1);
+    border:1px solid rgba(255,176,32,0.35);
+    color:var(--amber);
+  }
+  .status-pill.warn .pulse{
+    background:var(--amber);
+    box-shadow:0 0 0 4px rgba(255,176,32,0.18);
+  }
+
+  /* ---------- SECTION ---------- */
+  section{ margin-top:48px; }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .section-head .arrow{
+    font-size:20px;
+    color:var(--pink);
+  }
+  .section-head h2{
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:-0.01em;
+    margin:0;
+    text-transform:lowercase;
+  }
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:20px;
+    overflow:hidden;
+  }
+
+  .table-scroll{
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  table{
+    width:100%;
+    min-width:640px;
+    border-collapse:collapse;
+    font-size:14.5px;
+  }
+  thead th{
+    text-align:left;
+    padding:16px 20px;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--cream-35);
+    font-weight:600;
+    border-bottom:1px solid var(--line);
+    white-space:nowrap;
+  }
+  tbody td{
+    padding:18px 20px;
+    border-bottom:1px solid var(--line);
+    color:var(--cream);
+    white-space:nowrap;
+  }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody td.brand{
+    font-weight:700;
+  }
+  .sit{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-weight:600;
+    color:var(--mint);
+  }
+  .sit .pulse{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--mint);
+    box-shadow:0 0 0 4px rgba(40,224,176,0.18);
+    flex-shrink:0;
+  }
+  .sit.warn{ color:var(--amber); }
+  .sit.warn .pulse{
+    background:var(--amber);
+    box-shadow:0 0 0 4px rgba(255,176,32,0.18);
+  }
+  .muted{ color:var(--cream-60); }
+
+  /* ---------- ATTENTION ---------- */
+  .attn-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  .attn-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:22px 22px 20px;
+  }
+  .attn-card.hot{
+    border-color:rgba(255,176,32,0.4);
+  }
+  .attn-card .num{
+    display:inline-block;
+    font-size:12px;
+    font-weight:700;
+    color:var(--black);
+    background:var(--grad);
+    padding:4px 10px;
+    border-radius:100px;
+    margin-bottom:14px;
+  }
+  .attn-card.hot .num{
+    background:var(--amber);
+  }
+  .attn-card p{
+    margin:0;
+    font-size:14.5px;
+    line-height:1.55;
+    color:var(--cream-60);
+  }
+  .attn-card p b{ color:var(--cream); font-weight:600; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    margin-top:60px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    font-size:12.5px;
+    color:var(--cream-35);
+  }
+  footer .brandmark{
+    font-weight:700;
+    color:var(--cream-60);
+    letter-spacing:.02em;
+  }
+
+  @media (max-width: 720px){
+    .page{ padding:36px 18px 60px; }
+    header h1{ font-size:30px; }
+    .hero-grid, .attn-grid{ grid-template-columns:1fr; }
+    .brand-card .pct{ font-size:44px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="eyebrow"><span class="dot"></span>Studio Hansi · Report interno</div>
+
+  <header>
+    <h1>Ritmo de vendas — agosto 2026</h1>
+    <p class="sub">
+      <span><b>WONDR Experience</b> &amp; <b>Barbie The Dream Experience</b></span>
+      <span>·</span>
+      <span>Fonte: Fever Zone</span>
+      <span>·</span>
+      <span>Corte: <b>25/08/2026</b> (dia 25 de 31 — 80,6% do mês decorrido) · atualizado 26/08</span>
+    </p>
+  </header>
+
+  <!-- HERO: pace por marca -->
+  <div class="hero-grid">
+
+    <div class="brand-card">
+      <div class="brand-name">Wondr Experience</div>
+      <div class="pct">84,1%</div>
+      <div class="pct-label">da meta de agosto atingida</div>
+
+      <div class="track">
+        <div class="marker" style="left:80.6%"><span>mês: 80,6%</span></div>
+        <div class="fill" style="width:84.1%"></div>
+      </div>
+
+      <div class="figures">
+        <div>Vendido<b>16.829</b></div>
+        <div>Meta<b>20.000</b></div>
+        <div>Faltam<b>3.171</b></div>
+      </div>
+
+      <span class="status-pill"><span class="pulse"></span>Média 4d (554/dia) acima do necessário (528,5/dia) — recuperado</span>
+    </div>
+
+    <div class="brand-card">
+      <div class="brand-name">Barbie The Dream Experience</div>
+      <div class="pct">84,8%</div>
+      <div class="pct-label">da meta de agosto atingida</div>
+
+      <div class="track">
+        <div class="marker" style="left:80.6%"><span>mês: 80,6%</span></div>
+        <div class="fill" style="width:84.8%"></div>
+      </div>
+
+      <div class="figures">
+        <div>Vendido<b>15.262</b></div>
+        <div>Meta<b>18.000</b></div>
+        <div>Faltam<b>2.738</b></div>
+      </div>
+
+      <span class="status-pill"><span class="pulse"></span>Média 4d (529,3/dia) acima do necessário (456,3/dia)</span>
+    </div>
+
+  </div>
+
+  <!-- VEREDITO CONSOLIDADO -->
+  <section>
+    <div class="section-head">
+      <span class="arrow">↗</span>
+      <h2>veredito consolidado — ritmo real vs. necessário</h2>
+    </div>
+
+    <div class="card">
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Marca</th>
+            <th>Necessário / dia (8d restantes)</th>
+            <th>Média 7d</th>
+            <th>Média 4d</th>
+            <th>Situação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="brand">WONDR</td>
+            <td>528,5</td>
+            <td>598,3</td>
+            <td>554</td>
+            <td><span class="sit"><span class="pulse"></span>Recuperado — folga de +25,5/dia após reativação do TOF</span></td>
+          </tr>
+          <tr>
+            <td class="brand">Barbie</td>
+            <td>456,3</td>
+            <td>554,7</td>
+            <td>529,3</td>
+            <td><span class="sit"><span class="pulse"></span>Recuperado — folga de +73/dia</span></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PONTOS DE ATENÇÃO -->
+  <section>
+    <div class="section-head">
+      <span class="arrow">↗</span>
+      <h2>pontos de atenção</h2>
+    </div>
+
+    <div class="attn-grid">
+      <div class="attn-card">
+        <span class="num">01</span>
+        <p><b>As duas marcas recuperaram o ritmo</b> depois da reativação das campanhas TOF/Parents no Meta e TikTok. WONDR e Barbie estão acima do necessário/dia — a folga volta a crescer em vez de encolher.</p>
+      </div>
+      <div class="attn-card">
+        <span class="num">02</span>
+        <p><b>Próximo passo é reduzir investimento com inteligência, não corte raso.</b> Com a folga atual, dá pra cortar desperdício comprovado (ex: campanhas com CPA altíssimo ou zero conversão direta) sem tocar no TOF que acabou de puxar a recuperação. O fim de semana de <b>28–30/08</b> segue sendo a última janela grande do mês.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="brandmark">Studio Hansi</span>
+    <span>falecom@studiohansi.com.br · www.studiohansi.com.br · @studiohansi</span>
+  </footer>
+
+</div>
+</body>
+</html>
