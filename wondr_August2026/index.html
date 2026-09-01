@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WONDR Experience — Performance Report · August 2026</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --hot-pink:#FF2D78;
+    --mystic-purple:#7B2FF7;
+    --action-orange:#FF7A3D;
+    --bg:#0D0A14;
+    --card:#17131F;
+    --card-2:#1D1828;
+    --ink:#F6F3FB;
+    --ink-soft:#AFA3C4;
+    --line:#2C2438;
+    --good:#2ED573;
+    --good-bg:rgba(46,213,115,.12);
+    --bad:#FF4B5C;
+    --bad-bg:rgba(255,75,92,.12);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Manrope',sans-serif;
+    line-height:1.5;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px 100px;}
+
+  /* HEADER */
+  header{
+    background:linear-gradient(150deg,var(--hot-pink) 0%,var(--mystic-purple) 100%);
+    color:#fff;
+    padding:64px 28px 56px;
+    position:relative;
+    overflow:hidden;
+  }
+  header::after{
+    content:"";
+    position:absolute;
+    right:-70px; top:-70px;
+    width:300px; height:300px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,.16);
+  }
+  header::before{
+    content:"";
+    position:absolute;
+    right:60px; bottom:-100px;
+    width:200px; height:200px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,.13);
+  }
+  .arc-extra{
+    position:absolute; left:-90px; bottom:-120px;
+    width:260px; height:260px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,.10);
+  }
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.82);
+    margin:0 0 14px;
+    position:relative;
+  }
+  header h1{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:40px;
+    line-height:1.15;
+    margin:0 0 10px;
+    max-width:640px;
+    position:relative;
+  }
+  header h1 .subline{
+    display:block;
+    font-size:.52em;
+    font-weight:400;
+    opacity:.88;
+    margin-top:6px;
+  }
+  header p.sub{
+    margin:0;
+    font-size:16px;
+    color:rgba(255,255,255,.85);
+    max-width:520px;
+    position:relative;
+  }
+  .status-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:28px;
+    padding:8px 16px;
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:100px;
+    font-size:13px;
+    color:#fff;
+    position:relative;
+  }
+  .status-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--action-orange);}
+
+  /* SECTION */
+  section{padding:56px 0 8px; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:6px;}
+  .sec-num{
+    font-family:'Fraunces',serif;
+    font-size:15px;
+    color:var(--hot-pink);
+    font-weight:600;
+  }
+  .sec-head h2{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:26px;
+    margin:0;
+    color:var(--ink);
+  }
+  .sec-intro{color:var(--ink-soft); font-size:15px; margin:8px 0 28px; max-width:640px;}
+
+  /* GOAL CARDS (part 1) — ticket style */
+  .goal-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:18px 0 16px;}
+  @media (max-width:620px){.goal-grid{grid-template-columns:1fr;}}
+  .goal-card{
+    border-radius:16px;
+    padding:22px 24px 20px;
+    background:var(--card);
+    border:1px solid var(--line);
+    position:relative;
+  }
+  .goal-card::before{
+    content:"";
+    position:absolute; left:0; right:0; top:0;
+    height:4px;
+    border-radius:16px 16px 0 0;
+    background:linear-gradient(90deg,var(--hot-pink),var(--mystic-purple));
+  }
+  .goal-card.warn::before{background:linear-gradient(90deg,var(--action-orange),var(--hot-pink));}
+  .goal-card .label{font-size:12px; font-weight:700; letter-spacing:.03em; color:var(--hot-pink); text-transform:uppercase; margin-bottom:10px;}
+  .goal-card.warn .label{color:var(--action-orange);}
+  .goal-card .big{font-size:34px; font-weight:800; font-family:'Fraunces',serif; color:var(--ink); line-height:1;}
+  .goal-card .big small{font-size:14px; font-weight:600; color:var(--ink-soft); margin-left:6px;}
+  .goal-card .rowline{display:flex; justify-content:space-between; margin-top:16px; font-size:13.5px; color:var(--ink-soft);}
+  .goal-card .rowline b{display:block; color:var(--ink); font-size:16px; font-weight:800;}
+  .goal-card .note{margin-top:14px; font-size:13px; font-weight:600;}
+  .goal-card .note.ok{color:var(--good);}
+  .goal-card .note.warn{color:var(--action-orange);}
+
+  .kpi-strip{display:flex; gap:14px; margin:18px 0 8px;}
+  @media (max-width:560px){.kpi-strip{flex-direction:column;}}
+  .kpi-box{flex:1; border-radius:14px; padding:18px 20px; background:var(--card); border:1px solid var(--line);}
+  .kpi-box .label{font-size:12px; color:var(--ink-soft); margin-bottom:6px;}
+  .kpi-box .val{font-size:24px; font-weight:800; font-family:'Fraunces',serif; color:var(--ink);}
+
+  /* PLATFORM LABEL */
+  .platform-label{
+    display:inline-block;
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:.03em;
+    padding:4px 11px;
+    border-radius:6px;
+    margin:26px 0 12px;
+  }
+  .platform-label.meta{background:rgba(123,47,247,.18); color:#B79CFF;}
+  .platform-label.tiktok{background:#fff; color:#111;}
+
+  /* TABLE */
+  table{width:100%; border-collapse:collapse; font-size:14px; margin-bottom:10px;}
+  th{
+    text-align:left;
+    font-size:12px;
+    color:var(--ink-soft);
+    font-weight:600;
+    padding:9px 12px;
+    border-bottom:2px solid var(--hot-pink);
+    background:transparent;
+  }
+  td{
+    padding:11px 12px;
+    border-bottom:1px solid var(--line);
+    color:var(--ink);
+  }
+  tr:last-child td{border-bottom:none;}
+  td.num, th.num{text-align:right; font-variant-numeric:tabular-nums;}
+  .hl-row td{background:var(--card-2); font-weight:700;}
+  .muted{color:var(--ink-soft); font-size:13px;}
+
+  /* CALLOUT */
+  .callout{
+    border-radius:12px;
+    padding:18px 20px;
+    margin:18px 0;
+    font-size:14.5px;
+  }
+  .callout.note{background:var(--card-2); color:#E4D9FF; border-left:4px solid var(--mystic-purple);}
+  .callout strong{color:#fff;}
+
+  /* CARDS ROW (part 3 - creative highlights) — ticket stub look */
+  .creative-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:18px 0 28px;}
+  @media (max-width:620px){.creative-grid{grid-template-columns:1fr;}}
+  .creative-card{
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:var(--card);
+    position:relative;
+    overflow:hidden;
+  }
+  .creative-card::before{
+    content:"";
+    position:absolute; left:0; top:0; bottom:0;
+    width:4px;
+    background:linear-gradient(180deg,var(--hot-pink),var(--mystic-purple));
+  }
+  .creative-card .body{padding:18px 18px 16px 22px;}
+  .creative-card .obj{
+    font-size:11.5px;
+    font-weight:700;
+    color:var(--hot-pink);
+    letter-spacing:.03em;
+    margin-bottom:8px;
+  }
+  .creative-card h4{margin:0 0 6px; font-size:15.5px; font-family:'Fraunces',serif; font-weight:500; color:#fff;}
+  .creative-card .meta-line{font-size:12.5px; color:var(--ink-soft); margin-bottom:10px;}
+  .creative-card .stat{font-size:20px; font-weight:800; color:var(--ink);}
+  .creative-card .stat span{font-size:12.5px; font-weight:500; color:var(--ink-soft); margin-left:4px;}
+
+  /* good/bad target list part 4 */
+  .tb-list{display:flex; flex-direction:column; gap:10px; margin:14px 0 24px;}
+  .tb-item{
+    display:flex; justify-content:space-between; align-items:center;
+    gap:12px;
+    padding:14px 16px;
+    border-radius:10px;
+    font-size:14px;
+  }
+  .tb-item.good{background:var(--good-bg);}
+  .tb-item.bad{background:var(--bad-bg);}
+  .tb-item .who{font-weight:700; color:#fff;}
+  .tb-item .who small{display:block; font-weight:500; color:var(--ink-soft); font-size:12px; margin-top:2px;}
+  .tb-item .cpa{font-weight:800; white-space:nowrap; text-align:right; flex-shrink:0;}
+  .tb-item.good .cpa{color:var(--good);}
+  .tb-item.bad .cpa{color:var(--bad);}
+
+  /* rank list part 5 */
+  .rank-item{
+    display:flex; align-items:center; gap:14px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .rank-item:last-child{border-bottom:none;}
+  .rank-num{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    color:var(--hot-pink);
+    width:26px;
+    flex-shrink:0;
+  }
+  .rank-body{flex:1;}
+  .rank-body .name{font-weight:700; font-size:14.5px; color:#fff;}
+  .rank-body .sub{font-size:12.5px; color:var(--ink-soft);}
+  .rank-num-stat{text-align:right; flex-shrink:0;}
+  .rank-num-stat .n{font-weight:800; font-size:16px; color:#fff;}
+  .rank-num-stat .l{font-size:11px; color:var(--ink-soft);}
+
+  /* frequency part */
+  .freq-row-highlight td{background:var(--good-bg); font-weight:700; color:var(--good);}
+  .freq-row-low td{background:var(--bad-bg); color:var(--bad);}
+
+  /* learnings */
+  .learn-col{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:8px;}
+  @media (max-width:620px){.learn-col{grid-template-columns:1fr;}}
+  .learn-box{border-radius:14px; padding:22px; border:1px solid var(--line);}
+  .learn-box.good{background:var(--good-bg);}
+  .learn-box.bad{background:var(--bad-bg);}
+  .learn-box h3{margin:0 0 14px; font-size:15px; font-family:'Fraunces',serif;}
+  .learn-box.good h3{color:var(--good);}
+  .learn-box.bad h3{color:var(--bad);}
+  .learn-box ol{margin:0; padding-left:18px; font-size:13.8px; color:var(--ink);}
+  .learn-box li{margin-bottom:12px;}
+  .learn-box li:last-child{margin-bottom:0;}
+
+  footer{
+    padding:36px 28px 48px;
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:12.5px;
+  }
+
+  .table-scroll{
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    margin-bottom:10px;
+  }
+  .table-scroll table{ margin-bottom:0; min-width:480px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="arc-extra"></div>
+  <div class="wrap" style="padding:0;">
+    <p class="eyebrow">Wondr</p>
+    <h1>WONDR Experience<span class="subline">Performance Report — August 2026</span></h1>
+    <p class="sub">Meta Ads + TikTok Ads + Google Ads, Aug 1–31. Prepared by Studio Hansi.</p>
+    <div class="status-pill"><span class="dot"></span> Final</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- PART 1 -->
+  <section>
+    <div class="sec-head"><span class="sec-num">Part 1</span><h2>Goal progress</h2></div>
+    <p class="sec-intro">Official month-end close (Fever Zone) — ticket sales and internal CPA% (total spend ÷ ticket revenue), Meta + TikTok + Google combined.</p>
+
+    <div class="goal-grid">
+      <div class="goal-card">
+        <div class="label">Sales target</div>
+        <div class="big">103.73%<small>of target hit</small></div>
+        <div class="rowline">
+          <div>Target<b>20,000</b></div>
+          <div>Sold<b>20,746</b></div>
+        </div>
+        <div class="note ok">✓ Target hit</div>
+      </div>
+      <div class="goal-card warn">
+        <div class="label">Ideal CPA (% of ticket cost)</div>
+        <div class="big">24.75%<small>actual</small></div>
+        <div class="rowline">
+          <div>Target<b>20%</b></div>
+          <div>CPA €<b>5.63</b></div>
+        </div>
+        <div class="note warn">⚠ 4.75 pp above ceiling — worth watching, the biggest gap of the two reports this month</div>
+      </div>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-box">
+        <div class="label">Total revenue (ticket sales)</div>
+        <div class="val">€531,551.00</div>
+      </div>
+      <div class="kpi-box">
+        <div class="label">ROAS</div>
+        <div class="val">4.55x</div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:8px;">Ticket price with 9% off: €22.75.</p>
+  </section>
+
+  <!-- PART 2 -->
+  <section>
+    <div class="sec-head"><span class="sec-num">Part 2</span><h2>Total investment and ROAS</h2></div>
+    <p class="sec-intro">Consolidated paid media view — Meta + TikTok + Google, closed month.</p>
+
+    <div class="kpi-strip">
+      <div class="kpi-box">
+        <div class="label">Total media investment</div>
+        <div class="val">€116,808.29</div>
+      </div>
+      <div class="kpi-box">
+        <div class="label">ROAS (revenue ÷ investment)</div>
+        <div class="val">4.55x</div>
+      </div>
+    </div>
+
+    <div class="table-scroll">
+    <table style="margin-top:8px;">
+      <thead><tr>
+        <th>Channel</th><th class="num">Invested</th><th class="num">% of total</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Meta</td><td class="num">€58,752.24</td><td class="num">50.30%</td></tr>
+        <tr><td>TikTok</td><td class="num">€37,917.32</td><td class="num">32.46%</td></tr>
+        <tr><td>Google</td><td class="num">€20,138.73</td><td class="num">17.24%</td></tr>
+        <tr class="hl-row"><td>Total</td><td class="num">€116,808.29</td><td class="num">100%</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="muted" style="margin-top:8px;">More balanced split than Barbie — Meta holds only half the budget (vs nearly 60% on Barbie), TikTok pulls proportionally more weight (see Part 5).</p>
+  </section>
+
+  <!-- PART 2.1 -->
+  <section>
+    <div class="sec-head"><span class="sec-num">Part 2.1</span><h2>Cost by campaign objective</h2></div>
+    <p class="sec-intro">Spend and efficiency grouped by each campaign's actual objective — CPA only where it's meaningful (Sales). LPV, Reach and Engagement are read by their own funnel metric.</p>
+
+    <span class="platform-label meta">META</span>
+    <div class="table-scroll">
+    <table>
+      <thead><tr>
+        <th>Objective</th><th class="num">Campaigns</th><th class="num">Spend</th><th class="num">Result</th><th class="num">Cost/result</th>
+      </tr></thead>
+      <tbody>
+        <tr class="hl-row"><td>Sales</td><td class="num">5</td><td class="num">€42,055.15</td><td class="num">1,311 sales</td><td class="num">CPA €32.08</td></tr>
+        <tr><td>LPV / Traffic</td><td class="num">2</td><td class="num">€13,020.92</td><td class="num">118,218 LPVs</td><td class="num">€0.110 / LPV</td></tr>
+        <tr><td>Engagement</td><td class="num">2</td><td class="num">€3,629.37</td><td class="num">1,294,562 engag.</td><td class="num">€0.003 / engag.</td></tr>
+        <tr><td>Reach / Awareness</td><td class="num">1</td><td class="num">€265.93</td><td class="num">76,066 reach</td><td class="num">€0.003 / person</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <span class="platform-label tiktok">TIKTOK</span>
+    <div class="table-scroll">
+    <table>
+      <thead><tr>
+        <th>Objective</th><th class="num">Campaigns</th><th class="num">Spend</th><th class="num">Result</th><th class="num">Cost/result</th>
+      </tr></thead>
+      <tbody>
+        <tr class="hl-row"><td>Sales</td><td class="num">6</td><td class="num">€21,585.63</td><td class="num">544 sales</td><td class="num">CPA €39.68</td></tr>
+        <tr><td>Traffic / LPV / Search</td><td class="num">3</td><td class="num">€15,160.32</td><td class="num">—</td><td class="num muted">no CPA reported</td></tr>
+        <tr><td>Reach / Video Views</td><td class="num">2</td><td class="num">€2,123.44</td><td class="num">reach 783k</td><td class="num">€2.71 / thousand</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="muted" style="margin:-4px 0 0;">Excludes the "[Hansi] PB | TOF | Reach" campaign — that's Pink Beach, not WONDR; the two brands share the same TikTok account.</p>
+  </section>
+
+  <!-- PART 3 -->
+  <section>
+    <div class="sec-head"><span class="sec-num">Part 3</span><h2>Top creatives by objective</h2></div>
+    <p class="sec-intro">One highlight per objective, split by platform.</p>
+
+    <span class="platform-label meta">META</span>
+    <div class="creative-grid">
+      <div class="creative-card">
+        <div class="body">
+          <div class="obj">SALES</div>
+          <h4>"Wavy #4 Destina"</h4>
+          <div class="meta-line">Ad set: EU 15d Website Visitor · spend €2,160</div>
+          <div class="stat">96<span>sales</span></div>
+          <div class="meta-line" style="margin-top:6px;">CPA €22.50</div>
+        </div>
+      </div>
+      <div class="creative-card">
+        <div class="body">
+          <div class="obj">LPV</div>
+          <h4>"@ayanrzayeva Ad"</h4>
+          <div class="meta-line">Ad set: Parents NL F Kids 1-12 · spend €1,679</div>
+          <div class="stat">17,189<span>LPVs</span></div>
+          <div class="meta-line" style="margin-top:6px;">€0.098 per LPV</div>
+        </div>
+      </div>
+      <div class="creative-card">
+        <div class="body">
+          <div class="obj">ENGAGEMENT</div>
+          <h4>"Recreating viral memes"</h4>
+          <div class="meta-line">Ad set: IG Followers + Engagement · spend €279</div>
+          <div class="stat">246k<span>engagements</span></div>
+          <div class="meta-line" style="margin-top:6px;">€0.001 per engagement</div>
+        </div>
+      </div>
+    </div>
+
+    <span class="platform-label tiktok">TIKTOK</span>
+    <div class="creative-grid">
+      <div class="creative-card">
+        <div class="body">
+          <div class="obj">SALES — BEST CPA</div>
+          <h4>UGC "Even mijn jeugd herbeleefd" (@Maik Siekema)</h4>
+          <div class="meta-line">Ad group: NL 18-44 Dutch Speaking · spend €187</div>
+          <div class="stat">10<span>sales</span></div>
+          <div class="meta-line" style="margin-top:6px;">CPA €18.72</div>
+        </div>
+      </div>
+      <div class="creative-card">
+        <div class="body">
+          <div class="obj">SALES — HIGHEST VOLUME</div>
+          <h4>"dagje uit amsterdam..." (auto-generated carousel)</h4>
+          <div class="meta-line">Ad group: Smart+ Amsterdam only BS 18-34 · spend €552</div>
+          <div class="stat">14<span>sales</span></div>
+          <div class="meta-line" style="margin-top:6px;">CPA €39.40</div>
+        </div>
+      </div>
+    </div>
+    <p class="muted" style="margin:-8px 0 24px;">Creator UGC (@Maik Siekema, @Amy Kai) is consistently the cheapest creative of the month on both platforms — CPA €15–24 even at small volumes.</p>
+  </section>
+
+  <!-- PART 4 -->
+  <section>
+    <div class="sec-head"><span class="sec-num">Part 4</span><h2>Detailed conversion</h2></div>
+    <p class="sec-intro">Audience (ad set / ad group) + creative combinations that performed best and worst — Sales campaigns only.</p>
+
+    <div class="tb-list">
+      <div class="tb-item good">
+        <div class="who">NL 18-44 Dutch Speaking <small>TikTok · UGC @Maik Siekema</small></div>
+        <div class="cpa">10 sales · CPA €18.72</div>
+      </div>
+      <div class="tb-item good">
+        <div class="who">Smart+ Amsterdam 18-34 <small>TikTok · UGC @Amy Kai</small></div>
+        <div class="cpa">5 sales · CPA €20.20</div>
+      </div>
+      <div class="tb-item good">
+        <div class="who">EU 15d Website Visitor <small>Meta · "Wavy #4 Destina"</small></div>
+        <div class="cpa">96 sales · CPA €22.50</div>
+      </div>
+      <div class="tb-item bad">
+        <div class="who">7d Website Visitors <small>TikTok · UGC "The SpongeBob special is finally open" — same audience that converts at €30 with a different creative</small></div>
+        <div class="cpa">8 sales · CPA €201.90</div>
+      </div>
+      <div class="tb-item bad">
+        <div class="who">DE (Germany) Adv+ <small>Meta · "@andalila_ausfluege AD" — the audience converts well (106 sales, CPA €39.23 for the whole ad set), but this specific creative generated zero sales</small></div>
+        <div class="cpa">0 sales · €2,646.35 spent</div>
+      </div>
+    </div>
+    <p class="muted" style="margin:-8px 0 0;">⚠ Note: the ad "@andalila_ausfluege AD" was marked as deleted/paused but kept running and accruing spend — likely a Meta bug, not an account setup error.</p>
+  </section>
+
+  <!-- PART 5 -->
+  <section>
+    <div class="sec-head"><span class="sec-num">Part 5</span><h2>Sales by audience</h2></div>
+    <p class="sec-intro">Ranking of ad sets/ad groups by sales volume — Sales/Conversion campaigns only, Meta + TikTok combined.</p>
+
+    <div class="rank-item">
+      <div class="rank-num">1</div>
+      <div class="rank-body"><div class="name">Smart+ | Amsterdam only BS 18-34</div><div class="sub">TikTok · S&S AMS ACTIVATION Conversion Smart · CPA €37.18</div></div>
+      <div class="rank-num-stat"><div class="n">208</div><div class="l">sales</div></div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">2</div>
+      <div class="rank-body"><div class="name">Adv+ NL BS 18-36</div><div class="sub">Meta · [Hansi] Conversion | Handover · CPA €35.98</div></div>
+      <div class="rank-num-stat"><div class="n">204</div><div class="l">sales</div></div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">3</div>
+      <div class="rank-body"><div class="name">Parents BS 0-12 NL</div><div class="sub">Meta · [Hansi] Conversion | Handover · CPA €29.93</div></div>
+      <div class="rank-num-stat"><div class="n">201</div><div class="l">sales</div></div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">4</div>
+      <div class="rank-body"><div class="name">UK Adv+</div><div class="sub">Meta · S&S EU ACTIVATION Conversion Broad · CPA €27.61</div></div>
+      <div class="rank-num-stat"><div class="n">186</div><div class="l">sales</div></div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">5</div>
+      <div class="rank-body"><div class="name">BE, FR, IT Adv+</div><div class="sub">Meta · S&S EU ACTIVATION Conversion Broad · CPA €23.83</div></div>
+      <div class="rank-num-stat"><div class="n">171</div><div class="l">sales</div></div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">6</div>
+      <div class="rank-body"><div class="name">EU 15d Website Visitor</div><div class="sub">Meta · S&S 4.REVENUE Conversion Retargeting · CPA €26.91</div></div>
+      <div class="rank-num-stat"><div class="n">136</div><div class="l">sales</div></div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">7</div>
+      <div class="rank-body"><div class="name">DE (Germany) Adv+</div><div class="sub">Meta · S&S EU ACTIVATION Conversion Broad · CPA €39.23</div></div>
+      <div class="rank-num-stat"><div class="n">106</div><div class="l">sales</div></div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">8</div>
+      <div class="rank-body"><div class="name">NL 15d Website Visitor</div><div class="sub">Meta · S&S 4.REVENUE Conversion Retargeting · CPA €28.65</div></div>
+      <div class="rank-num-stat"><div class="n">96</div><div class="l">sales</div></div>
+    </div>
+
+    <div class="callout note" style="margin-top:22px;">
+      <strong>Takeaway</strong>
+      Within pure sales campaigns, Meta dominates 7 of the top 8 spots — only TikTok's Smart+ Amsterdam makes the cut, but it's the single largest audience of the month (208 sales). BE/FR/IT Adv+ has the best CPA of the group (€23.83) with meaningful volume — a good candidate to scale. Just missed the cut: "Conversion | UK" (TikTok, 89 sales, CPA €58.19) and "NL 18-44 Dutch Speaking" (TikTok, 89 sales, CPA €24.37).
+    </div>
+  </section>
+
+  <!-- PART 6 -->
+  <section>
+    <div class="sec-head"><span class="sec-num">Part 6</span><h2>Minimum frequency for conversion</h2></div>
+    <p class="sec-intro">Cross-analysis of average frequency (impressions per person) and conversion rate — Meta ads for the month, grouped by frequency band.</p>
+
+    <div class="table-scroll">
+    <table>
+      <thead><tr>
+        <th>Frequency band</th><th class="num">Ads</th><th class="num">Total reach</th><th class="num">Spend</th><th class="num">Sales</th><th class="num">CPA</th><th class="num">Conversion/reach</th>
+      </tr></thead>
+      <tbody>
+        <tr class="freq-row-low"><td>&lt; 1.5</td><td class="num">200</td><td class="num">3.26M</td><td class="num">€11,614</td><td class="num">105</td><td class="num">€110.61</td><td class="num">0.0032%</td></tr>
+        <tr class="freq-row-highlight"><td>1.5 – 2</td><td class="num">70</td><td class="num">2.35M</td><td class="num">€24,682</td><td class="num">590</td><td class="num">€41.83</td><td class="num">0.0251%</td></tr>
+        <tr><td>2 – 2.5</td><td class="num">25</td><td class="num">1.11M</td><td class="num">€16,457</td><td class="num">431</td><td class="num">€38.18</td><td class="num">0.0387%</td></tr>
+        <tr><td>2.5 – 3</td><td class="num">6</td><td class="num">79k</td><td class="num">€2,408</td><td class="num">65</td><td class="num">€37.05</td><td class="num">0.0825%</td></tr>
+        <tr><td>3 – 4</td><td class="num">2</td><td class="num">29k</td><td class="num">€556</td><td class="num">15</td><td class="num">€37.09</td><td class="num">0.0524%</td></tr>
+        <tr><td>4 – 5</td><td class="num">2</td><td class="num">82k</td><td class="num">€3,253</td><td class="num">139</td><td class="num">€23.41</td><td class="num">0.1687%</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="muted" style="margin:-4px 0 20px;">Sample size for bands above 2.5 is small (2–6 ads) — noisy, read as a direction rather than a fixed rule.</p>
+
+    <div class="callout note">
+      <strong>Why it matters</strong>
+      Same 1.5-impressions-per-person threshold we saw on Barbie: below it, WONDR barely sells (CPA €111, nearly 3x worse than average). Crossing 1.5, CPA drops to €42 and conversion jumps ~8x. Unlike Barbie, here the pattern <strong>keeps improving</strong> as frequency climbs instead of leveling off — a sign the WONDR audience tolerates more message repetition before saturating (a more recurring/family product vs. a one-off travel decision).
+      <br><br>
+      <span class="muted">Caveat: this is average monthly frequency accumulated per ad, not a proven causal sequence — read it as a direction, not a fixed rule.</span>
+    </div>
+  </section>
+
+  <!-- PART 7 -->
+  <section>
+    <div class="sec-head"><span class="sec-num">Part 7</span><h2>General learnings</h2></div>
+    <div class="learn-col">
+      <div class="learn-box good">
+        <h3>What worked</h3>
+        <ol>
+          <li>Creator UGC (@Maik Siekema, @Amy Kai) is the most efficient creative of the month on both platforms — CPA €15–24, well below the account average.</li>
+          <li>Retargeting/Website Visitors converts consistently and cheaply (€23–30) on both platforms — the efficiency engine of the month.</li>
+          <li>Smart+ Amsterdam (TikTok) is the single largest audience of the month, with a healthy CPA (€37) even at high volume.</li>
+        </ol>
+      </div>
+      <div class="learn-box bad">
+        <h3>What didn't work</h3>
+        <ol>
+          <li>The same creative/creator can swing from CPA €18 to €200+ depending on the audience pairing — even within the same Sales campaign, it's not just about spend volume.</li>
+          <li>The "@andalila_ausfluege AD" creative generated zero sales despite €2,646 invested — inside an audience (DE Germany Adv+) that converts normally (106 sales, CPA €39.23 for the whole ad set). It was marked as deleted but kept running — likely a Meta bug; action: verify and report to support.</li>
+          <li>Pure Engagement/Reach doesn't contribute to CPA% — fine as support, but shouldn't be read against the sales metric.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>Studio Hansi · WONDR Experience · August 2026 Performance Report</footer>
+
+</body>
+</html>
