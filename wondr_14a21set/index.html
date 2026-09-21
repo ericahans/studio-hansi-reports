@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WONDR Experience: visitantes de 14 a 21 de setembro</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<style>
+:root{
+  --bg:#0f0a1e;--panel:#1a1230;--ink:#f6f1ff;--muted:#a99ec8;--line:#2f2455;--track:#2a1f4d;
+  --pink:#ff3d9a;--violet:#8b5cf6;--blue:#38bdf8;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){--bg:#faf7ff;--panel:#ffffff;--ink:#1a1030;--muted:#5f5580;--line:#e3daf5;--track:#ece4fb;--pink:#e0217f;--violet:#6d3fe0;--blue:#0a84c1}
+}
+:root[data-theme="light"]{--bg:#faf7ff;--panel:#ffffff;--ink:#1a1030;--muted:#5f5580;--line:#e3daf5;--track:#ece4fb;--pink:#e0217f;--violet:#6d3fe0;--blue:#0a84c1}
+:root[data-theme="dark"]{--bg:#0f0a1e;--panel:#1a1230;--ink:#f6f1ff;--muted:#a99ec8;--line:#2f2455;--track:#2a1f4d;--pink:#ff3d9a;--violet:#8b5cf6;--blue:#38bdf8}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Avenir Next","Nunito","Segoe UI",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+#app{height:100%;display:flex;flex-direction:column}
+main{flex:1;min-height:0;position:relative}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;gap:clamp(14px,2.4vh,26px);padding:clamp(18px,4vw,64px);overflow-y:auto;overflow-x:hidden}
+.slide.on{display:flex;animation:in .28s ease-out}
+@keyframes in{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.slide.on{animation:none}}
+h1{font-size:clamp(30px,5.6vw,68px);line-height:1.04;margin:0;font-weight:800;letter-spacing:-.02em;max-width:16ch}
+h2{font-size:clamp(24px,3.6vw,44px);line-height:1.1;margin:0;font-weight:800;letter-spacing:-.015em;max-width:24ch}
+h3{font-size:16px;margin:0 0 10px;font-weight:700;color:var(--ink)}
+p{margin:0}
+.sub{color:var(--muted);font-size:clamp(15px,1.7vw,21px);max-width:44ch}
+.note{color:var(--muted);font-size:13px;max-width:78ch}
+.grid{display:grid;gap:clamp(12px,1.8vw,22px)}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g5{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:820px){.g2,.g3,.g4{grid-template-columns:minmax(0,1fr)}.g5{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ticket{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:16px;height:16px;margin-top:-8px;border-radius:50%;background:var(--bg);border:1px solid var(--line)}
+.ticket::before{left:-9px}
+.ticket::after{right:-9px}
+.big{font-size:clamp(30px,4.2vw,54px);font-weight:800;line-height:1;background:linear-gradient(90deg,var(--pink),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.kpi p{color:var(--muted);font-size:14px;margin-top:8px}
+.bars{display:grid;gap:9px}
+.row{display:grid;grid-template-columns:minmax(96px,34%) 1fr 58px;align-items:center;gap:10px;font-size:14px}
+.row span{color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row i{display:block;height:10px;border-radius:5px;background:var(--track);position:relative;overflow:hidden}
+.row i::after{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--w,0%);border-radius:5px;background:linear-gradient(90deg,var(--pink),var(--violet))}
+.row b{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.alt .row i::after{background:linear-gradient(90deg,var(--blue),var(--violet))}
+.donut{width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--pink) 0 67.8%,var(--blue) 0);display:grid;place-items:center;margin:4px 0 12px}
+.donut div{width:98px;height:98px;border-radius:50%;background:var(--panel);display:grid;place-items:center;text-align:center;font-weight:800;font-size:22px;line-height:1.1}
+.donut small{display:block;font-size:11px;font-weight:400;color:var(--muted)}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
+.stack{display:flex;height:18px;border-radius:9px;overflow:hidden;margin:6px 0 10px}
+.stack span{display:block;height:100%}
+table{width:100%;border-collapse:collapse;font-size:clamp(13px,1.5vw,17px)}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--blue);font-weight:700}
+.down{color:var(--pink);font-weight:700}
+.cards h3{color:var(--ink)}
+.cards p{color:var(--muted);font-size:15px}
+.arcs{position:absolute;right:-8%;top:50%;width:min(62vw,720px);transform:translateY(-50%);opacity:.9;pointer-events:none}
+.cover{align-items:flex-start;z-index:1}
+.cover>*{position:relative;z-index:1}
+nav{display:flex;align-items:center;gap:14px;padding:12px clamp(14px,3vw,40px);border-top:1px solid var(--line);background:var(--bg)}
+nav button{font:inherit;font-size:14px;font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 18px;cursor:pointer}
+nav button:hover{border-color:var(--violet)}
+nav button:disabled{opacity:.4;cursor:default}
+button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.dots{flex:1;min-width:0;display:flex;justify-content:center;gap:8px;overflow:hidden}
+@media (max-width:420px){
+  nav{padding:10px 12px;gap:8px}
+  nav button{padding:7px 12px;font-size:13px}
+  .count{min-width:36px;font-size:12px}
+}
+.dots button{width:10px;height:10px;padding:0;border-radius:50%;background:var(--track);border:0}
+.dots button[aria-current="true"]{background:linear-gradient(90deg,var(--pink),var(--violet));width:26px;border-radius:5px}
+.count{font-size:13px;color:var(--muted);min-width:44px;text-align:right}
+</style>
+</head>
+<body>
+<div id="app">
+<main id="deck" aria-live="polite">
+
+<section class="slide cover" aria-label="Capa">
+  <svg class="arcs" viewBox="0 0 400 400" aria-hidden="true">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff3d9a"/><stop offset=".55" stop-color="#8b5cf6"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
+    <g fill="none" stroke="url(#g)" stroke-width="10">
+      <circle cx="260" cy="200" r="70"/><circle cx="260" cy="200" r="115" opacity=".8"/><circle cx="260" cy="200" r="160" opacity=".6"/><circle cx="260" cy="200" r="205" opacity=".4"/><circle cx="260" cy="200" r="250" opacity=".25"/>
+    </g>
+  </svg>
+  <h1>Quem visitou a WONDR e de onde veio</h1>
+  <p class="sub">Compras de 14 a 21 de setembro de 2026, com dados do Fever Zone. A semana termina em 21/09, dia ainda parcial.</p>
+  <p class="note">WONDR Experience, 1.269 pedidos</p>
+</section>
+
+<section class="slide" aria-label="Resumo">
+  <h2>Público internacional, feminino e de última hora</h2>
+  <div class="grid g5 kpis">
+    <div class="ticket kpi"><div class="big">1.269</div><p>pedidos na semana</p></div>
+    <div class="ticket kpi"><div class="big">67,8%</div><p>dos compradores são mulheres</p></div>
+    <div class="ticket kpi"><div class="big">71%</div><p>compram no dia do evento</p></div>
+    <div class="ticket kpi"><div class="big">59,5%</div><p>compram de mais de 100 milhas</p></div>
+    <div class="ticket kpi"><div class="big">40,65%</div><p>conheceram a WONDR pelo TikTok</p></div>
+  </div>
+  <p class="note">Sobre o dia do evento: 906 dos 1.269 pedidos foram no D0 e 11,7% no D-1. Cerca de 83% dos pedidos acontecem em D-1 ou D0.</p>
+</section>
+
+<section class="slide" aria-label="Perfil">
+  <h2>Mulheres jovens, cada vez mais com amigos e parceiros</h2>
+  <div class="grid g3">
+    <div class="ticket">
+      <h3>Gênero</h3>
+      <div class="donut"><div>67,8%<small>feminino</small></div></div>
+      <div class="legend"><span><i style="background:var(--pink)"></i>Feminino 67,8%</span><span><i style="background:var(--blue)"></i>Masculino 32,2%</span></div>
+    </div>
+    <div class="ticket">
+      <h3>Com quem vêm</h3>
+      <div class="bars" data-max="40">
+        <div class="row" data-v="36.54"><span>Família</span><i></i><b>36,5%</b></div>
+        <div class="row" data-v="32.28"><span>Amigo(s)</span><i></i><b>32,3%</b></div>
+        <div class="row" data-v="22.29"><span>Parceiro(a)</span><i></i><b>22,3%</b></div>
+        <div class="row" data-v="5.6"><span>Outros</span><i></i><b>5,6%</b></div>
+        <div class="row" data-v="2.19"><span>Sozinho(a)</span><i></i><b>2,2%</b></div>
+      </div>
+    </div>
+    <div class="ticket">
+      <h3>Faixa etária</h3>
+      <div class="bars alt" data-max="50">
+        <div class="row" data-v="4"><span>18-24</span><i></i><b>4%</b></div>
+        <div class="row" data-v="44"><span>25-34</span><i></i><b>44%</b></div>
+        <div class="row" data-v="24"><span>35-44</span><i></i><b>24%</b></div>
+        <div class="row" data-v="28"><span>45-54</span><i></i><b>28%</b></div>
+      </div>
+      <p class="note" style="margin-top:12px">Amostra pequena, cerca de 25 registros.</p>
+    </div>
+  </div>
+  <p class="note">Idioma dos pedidos: inglês 58,2%, holandês 33,7%, alemão 4,2%. Dois ingressos por pedido é o mais comum (cerca de 48%). Cartão 33,5% e Apple Pay 25,2% lideram o pagamento.</p>
+</section>
+
+<section class="slide" aria-label="Origem">
+  <h2>Quase 6 em cada 10 compras vêm de mais de 100 milhas</h2>
+  <div class="grid g2">
+    <div class="ticket">
+      <h3>País do local de compra</h3>
+      <div class="bars" data-max="45">
+        <div class="row" data-v="40.98"><span>Holanda</span><i></i><b>41,0%</b></div>
+        <div class="row" data-v="18.37"><span>Reino Unido</span><i></i><b>18,4%</b></div>
+        <div class="row" data-v="14.47"><span>Alemanha</span><i></i><b>14,5%</b></div>
+        <div class="row" data-v="3.74"><span>Estados Unidos</span><i></i><b>3,7%</b></div>
+        <div class="row" data-v="3.25"><span>França</span><i></i><b>3,3%</b></div>
+      </div>
+      <p class="note" style="margin-top:12px">Vêm depois Irlanda, Itália, Espanha, Áustria, Suíça e Bélgica.</p>
+    </div>
+    <div class="ticket">
+      <h3>Origem do comprador (valores aproximados)</h3>
+      <div class="stack" role="img" aria-label="Internacional cerca de 60%, regional cerca de 21%, nacional cerca de 19%">
+        <span style="width:60%;background:var(--pink)"></span><span style="width:21%;background:var(--violet)"></span><span style="width:19%;background:var(--blue)"></span>
+      </div>
+      <div class="legend"><span><i style="background:var(--pink)"></i>Internacional 60%</span><span><i style="background:var(--violet)"></i>Regional 21%</span><span><i style="background:var(--blue)"></i>Nacional 19%</span></div>
+      <h3 style="margin-top:18px">Distância até a WONDR</h3>
+      <div class="bars alt" data-max="25">
+        <div class="row" data-v="14.7"><span>0 a 5 mi</span><i></i><b>14,7%</b></div>
+        <div class="row" data-v="22.2"><span>100 a 250 mi</span><i></i><b>22,2%</b></div>
+        <div class="row" data-v="19"><span>250 a 500 mi</span><i></i><b>19,0%</b></div>
+        <div class="row" data-v="18.3"><span>500+ mi</span><i></i><b>18,3%</b></div>
+      </div>
+    </div>
+  </div>
+  <p class="note">Cidades de compra: Amsterdam 14,8%, Haarlem 3,1%, Dublin 2,6%, Frankfurt 1,9%, Manchester 1,6% e Roterdã 1,5%, entre 282 localidades. Só 41% compram da Holanda, mas cerca de 20% se declaram holandeses: muitos são turistas comprando já em Amsterdam.</p>
+</section>
+
+<section class="slide" aria-label="Descoberta">
+  <h2>O TikTok é a principal porta de entrada</h2>
+  <div class="grid g2">
+    <div class="ticket">
+      <h3>Como conheceram a WONDR</h3>
+      <div class="bars" data-max="45">
+        <div class="row" data-v="40.65"><span>TikTok</span><i></i><b>40,65%</b></div>
+        <div class="row" data-v="17.83"><span>Instagram</span><i></i><b>17,83%</b></div>
+        <div class="row" data-v="11.52"><span>Outros</span><i></i><b>11,52%</b></div>
+        <div class="row" data-v="10.65"><span>Indicação</span><i></i><b>10,65%</b></div>
+        <div class="row" data-v="7.61"><span>Google</span><i></i><b>7,61%</b></div>
+        <div class="row" data-v="3.7"><span>Facebook</span><i></i><b>3,70%</b></div>
+        <div class="row" data-v="2.61"><span>Assistente de IA</span><i></i><b>2,61%</b></div>
+        <div class="row" data-v="1.52"><span>E-mail</span><i></i><b>1,52%</b></div>
+        <div class="row" data-v="1.52"><span>YouTube</span><i></i><b>1,52%</b></div>
+      </div>
+    </div>
+    <div class="grid" style="align-content:start">
+      <div class="ticket kpi"><div class="big">58,5%</div><p>TikTok e Instagram juntos</p></div>
+      <div class="ticket kpi"><div class="big">10,65%</div><p>chegam por indicação de família e amigos</p></div>
+      <p class="note">Resposta da pergunta "como conheceu", autodeclarada, com cerca de 460 respostas (aprox. 36% dos pedidos).</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" aria-label="Comparação com agosto">
+  <h2>O que mudou desde agosto</h2>
+  <table>
+    <thead><tr><th>Indicador</th><th class="n">21 a 24/08</th><th class="n">14 a 21/09</th><th class="n">Variação</th></tr></thead>
+    <tbody>
+      <tr><td>Conheceu pelo TikTok</td><td class="n">36,42%</td><td class="n">40,65%</td><td class="n up">▲ +4,23 pp</td></tr>
+      <tr><td>Conheceu pelo Instagram</td><td class="n">16,89%</td><td class="n">17,83%</td><td class="n up">▲ +0,94 pp</td></tr>
+      <tr><td>Conheceu pelo Google</td><td class="n">14,24%</td><td class="n">7,61%</td><td class="n down">▼ −6,63 pp</td></tr>
+      <tr><td>Acompanhante: família</td><td class="n">54,62%</td><td class="n">36,54%</td><td class="n down">▼ −18,08 pp</td></tr>
+      <tr><td>Acompanhante: amigo(s)</td><td class="n">15,05%</td><td class="n">32,28%</td><td class="n up">▲ +17,23 pp</td></tr>
+      <tr><td>Acompanhante: parceiro(a)</td><td class="n">20,43%</td><td class="n">22,29%</td><td class="n up">▲ +1,86 pp</td></tr>
+      <tr><td>Feminino</td><td class="n">63,8%</td><td class="n">67,8%</td><td class="n up">▲ +4,0 pp</td></tr>
+      <tr><td>Idioma inglês</td><td class="n">64,79%</td><td class="n">58,16%</td><td class="n down">▼ −6,63 pp</td></tr>
+      <tr><td>Idioma holandês</td><td class="n">28,26%</td><td class="n">33,73%</td><td class="n up">▲ +5,47 pp</td></tr>
+    </tbody>
+  </table>
+  <p class="note">As janelas são diferentes (4 dias em agosto, 8 dias em setembro), então trate as variações como direção, não como medida exata.</p>
+</section>
+
+<section class="slide cards" aria-label="Implicações para mídia">
+  <h2>O que isso muda na mídia</h2>
+  <div class="grid g2">
+    <div class="ticket"><h3>Otimizar o TikTok em vez de cortar</h3><p>É a maior fonte de descoberta. Pause só as campanhas de menor retorno e preserve as que alimentam a descoberta, acompanhando as vendas de D0 por 48h.</p></div>
+    <div class="ticket"><h3>Trocar família por amigos e casais</h3><p>Com a volta às aulas, o ângulo família perde força. Teste criativos de grupo de amigos e de date, focados em 25-34.</p></div>
+    <div class="ticket"><h3>Manter o alcance internacional</h3><p>Reino Unido e Alemanha somam cerca de 33% das compras, e 6 em cada 10 vêm de mais de 100 milhas.</p></div>
+    <div class="ticket"><h3>Reforçar o dia do evento</h3><p>Com 71% das compras no D0, retargeting e geo em Amsterdam tendem a converter mais que o topo de funil.</p></div>
+  </div>
+  <p class="note">Ressalvas: semana parcial (21/09 incompleto), amostra pequena em idade (cerca de 25 registros) e atribuição autodeclarada.</p>
+</section>
+
+</main>
+<nav>
+  <button id="prev" type="button" aria-label="Slide anterior">Anterior</button>
+  <div class="dots" id="dots"></div>
+  <span class="count" id="count"></span>
+  <button id="next" type="button" aria-label="Próximo slide">Próximo</button>
+</nav>
+</div>
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var dots=document.getElementById('dots');
+  var prev=document.getElementById('prev');
+  var next=document.getElementById('next');
+  var count=document.getElementById('count');
+  var i=0;
+  [].forEach.call(document.querySelectorAll('.bars'),function(g){
+    var max=parseFloat(g.getAttribute('data-max'))||100;
+    [].forEach.call(g.querySelectorAll('.row'),function(r){
+      var v=parseFloat(r.getAttribute('data-v'))||0;
+      r.querySelector('i').style.setProperty('--w',Math.min(100,v/max*100).toFixed(1)+'%');
+    });
+  });
+  slides.forEach(function(s,n){
+    var b=document.createElement('button');
+    b.type='button';b.setAttribute('aria-label','Ir para o slide '+(n+1));
+    b.addEventListener('click',function(){go(n)});
+    dots.appendChild(b);
+  });
+  function go(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.classList.toggle('on',k===i)});
+    [].forEach.call(dots.children,function(d,k){
+      if(k===i){d.setAttribute('aria-current','true')}else{d.removeAttribute('aria-current')}
+    });
+    prev.disabled=i===0;next.disabled=i===slides.length-1;
+    count.textContent=(i+1)+' / '+slides.length;
+    try{history.replaceState(null,'','#'+(i+1))}catch(e){}
+    slides[i].scrollTop=0;
+  }
+  prev.addEventListener('click',function(){go(i-1)});
+  next.addEventListener('click',function(){go(i+1)});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(i+1)}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1)}
+    else if(e.key==='Home'){go(0)}
+    else if(e.key==='End'){go(slides.length-1)}
+  });
+  var x0=null;
+  document.getElementById('deck').addEventListener('touchstart',function(e){x0=e.changedTouches[0].clientX},{passive:true});
+  document.getElementById('deck').addEventListener('touchend',function(e){
+    if(x0===null)return;
+    var dx=e.changedTouches[0].clientX-x0;x0=null;
+    if(Math.abs(dx)>60){go(dx<0?i+1:i-1)}
+  },{passive:true});
+  var h=parseInt((location.hash||'').replace('#',''),10);
+  go(isNaN(h)?0:h-1);
+})();
+</script>
+</body>
+</html>
