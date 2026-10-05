@@ -22,7 +22,8 @@ h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.05;letter-spac
 .lede{max-width:62ch;color:var(--muted);margin:0}
 .layout{display:grid;grid-template-columns:1.6fr 1fr;gap:36px;margin-top:32px;align-items:start}
 #map svg{width:100%;height:auto;display:block;border-radius:20px;background:var(--soft)}
-.band{display:grid;grid-template-columns:96px 1fr 54px;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.band{display:grid;grid-template-columns:108px 1fr 54px;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.band>span:first-child{white-space:nowrap}
 .band .t{height:12px;border-radius:6px;background:var(--soft)}
 .band .t i{display:block;height:100%;border-radius:6px;background:var(--pink)}
 .band b{text-align:right;font-variant-numeric:tabular-nums}
@@ -72,6 +73,10 @@ const css=getComputedStyle(document.documentElement);
 const c=n=>css.getPropertyValue(n).trim();
 const deg=m=>m/69.05;
 const bands=[[0,5,10.5],[5,20,9.5],[20,50,10.5],[50,100,9],[100,250,27],[250,500,18.5]];
+function draw(){
+const mapEl=document.getElementById('map');mapEl.innerHTML='';
+const k=Math.min(1.7,Math.max(1,(W/(mapEl.clientWidth||W))*0.8));
+const halo=sel=>sel.attr('stroke',c('--soft')).attr('stroke-width',3*k).attr('stroke-linejoin','round').attr('paint-order','stroke');
 const svg=d3.select('#map').append('svg').attr('viewBox',`0 0 ${W} ${H}`);
 const circ=r=>d3.geoCircle().center(AMS).radius(Math.max(deg(r),0.001))();
 const proj=d3.geoAzimuthalEqualArea().rotate([-AMS[0],-AMS[1]]).fitExtent([[16,16],[W-16,H-16]],circ(640));
@@ -84,16 +89,19 @@ bands.forEach(([a,b,p])=>{
 });
 [50,100,250,500].forEach(r=>{
   svg.append('path').attr('d',path(circ(r))).attr('fill','none').attr('stroke',c('--deep')).attr('stroke-width',1).attr('stroke-dasharray','4 4');
-  const [x,y]=proj([AMS[0],AMS[1]+deg(r)]);
-  svg.append('text').attr('x',x).attr('y',y-6).attr('text-anchor','middle').attr('fill',c('--deep')).style('font-size','13px').style('font-weight',700).text(r+' mi');
+  const side=r===50;const [x,y]=proj([AMS[0],AMS[1]+deg(r)]);const [cx,cy]=proj(AMS);const rpx=Math.abs(cy-y);
+  svg.append('text').attr('x',side?cx-rpx-6*k:x).attr('y',side?cy+5*k:y-6*k).attr('text-anchor',side?'end':'middle').attr('fill',c('--deep')).style('font-size',(13*k)+'px').style('font-weight',700).text(r+' mi').call(halo);
 });
 const cities=[['Amsterdam',4.90,52.37],['Bruxelas',4.35,50.85],['Düsseldorf',6.78,51.23],['Frankfurt',8.68,50.11],['Londres',-0.13,51.51],['Paris',2.35,48.86],['Hamburgo',9.99,53.55],['Berlim',13.40,52.52],['Munique',11.58,48.14],['Zurique',8.54,47.38]];
 cities.forEach(([n,lo,la])=>{
   const [x,y]=proj([lo,la]);const a=n==='Amsterdam';
-  svg.append('circle').attr('cx',x).attr('cy',y).attr('r',a?6:3.5).attr('fill',a?c('--pink'):c('--ink')).attr('stroke',a?c('--paper'):'none').attr('stroke-width',2);
-  svg.append('text').attr('x',x+8).attr('y',y+4).attr('fill',c('--ink')).style('font-size',a?'14px':'12.5px').style('font-weight',a?800:500).text(n);
+  svg.append('circle').attr('cx',x).attr('cy',y).attr('r',(a?6:3.5)*Math.min(k,1.4)).attr('fill',a?c('--pink'):c('--ink')).attr('stroke',a?c('--paper'):'none').attr('stroke-width',2);
+  svg.append('text').attr('x',x+8*k).attr('y',y+4*k).attr('fill',c('--ink')).style('font-size',((a?14:12.5)*k)+'px').style('font-weight',a?800:500).text(n).call(halo);
 });
-svg.append('text').attr('x',W-20).attr('y',H-20).attr('text-anchor','end').attr('fill',c('--muted')).style('font-size','13px').text('Fora do último anel: 500+ mi, 15% dos pedidos');
+svg.append('text').attr('x',W-20).attr('y',H-20).attr('text-anchor','end').attr('fill',c('--muted')).style('font-size',(13*k)+'px').text('Fora do último anel: 500+ mi, 15% dos pedidos');
+}
+draw();
+let _t;window.addEventListener('resize',()=>{clearTimeout(_t);_t=setTimeout(draw,150)});
 })();
 </script>
 </body>
