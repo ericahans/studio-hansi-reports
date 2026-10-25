@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png"><link rel="apple-touch-icon" href="favicon-180.png">
+<title>O cardápio da Lavínia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E6F4EC; --surface:#FFFFFF; --ink:#3A2340; --muted:#7A6A80;
+  --accent:#E8475B; --line:#CFE6D7; --chip:#FFE7EA; --dim:.22;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1B2420; --surface:#26302B; --ink:#F4EAF2; --muted:#B9ABBD;
+    --accent:#FF7386; --line:#35453C; --chip:#40292E; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1B2420; --surface:#26302B; --ink:#F4EAF2; --muted:#B9ABBD;
+  --accent:#FF7386; --line:#35453C; --chip:#40292E; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Nunito",ui-rounded,system-ui,sans-serif;line-height:1.5}
+main{max-width:760px;margin:0 auto;padding:28px 18px 56px}
+h1,h2{font-family:"Fredoka","Nunito",ui-rounded,sans-serif;margin:0}
+h1{font-size:clamp(2.3rem,9vw,3.6rem);font-weight:700;line-height:1;color:var(--accent);letter-spacing:-.01em}
+.sub{color:var(--muted);margin:10px 0 0;font-size:1.05rem}
+.hero{position:relative;padding:8px 0 22px}
+.garland{display:flex;gap:2px;margin-top:22px;flex-wrap:wrap}
+.garland svg{width:44px;height:44px;animation:hop .6s ease-out both}
+@keyframes hop{0%{transform:translateY(14px) scale(.6);opacity:0}100%{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.garland svg{animation:none}}
+
+h2{font-size:1.6rem;font-weight:600;margin:34px 0 4px}
+.hint{color:var(--muted);margin:0 0 14px;font-size:.95rem}
+
+.stickers{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.sticker{display:flex;align-items:center;gap:10px;background:var(--surface);border:2px solid var(--line);border-radius:22px;padding:10px 12px;cursor:pointer;color:var(--ink);font:inherit;text-align:left;transition:border-color .15s,transform .15s}
+.sticker svg{width:46px;height:46px;flex:none}
+.sticker b{display:block;font-family:"Fredoka",sans-serif;font-weight:600;font-size:1.05rem;line-height:1.2}
+.sticker small{color:var(--muted);font-size:.82rem}
+.sticker[aria-pressed="true"]{border-color:var(--accent);transform:rotate(-2deg);background:var(--chip)}
+.sticker:focus-visible,.clear:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.clear{margin-top:12px;background:none;border:0;color:var(--accent);font:inherit;font-weight:700;cursor:pointer;padding:4px 0;visibility:hidden}
+.clear.on{visibility:visible}
+
+.week{margin-top:26px}
+.week h3{font-family:"Fredoka",sans-serif;font-weight:500;font-size:1.05rem;color:var(--muted);margin:0 0 10px}
+.day{display:grid;grid-template-columns:62px 1fr;gap:12px;align-items:center;background:var(--surface);border-radius:20px;padding:12px 14px;margin-bottom:8px;transition:opacity .2s}
+.day.dim{opacity:var(--dim)}
+.date{text-align:center;line-height:1}
+.date strong{display:block;font-family:"Fredoka",sans-serif;font-size:1.9rem;font-weight:700;color:var(--accent)}
+.date span{font-size:.8rem;color:var(--muted);font-weight:700}
+.foods{display:flex;flex-wrap:wrap;gap:6px 14px}
+.food{display:flex;flex-direction:column;align-items:center;width:64px;text-align:center}
+.food svg{width:48px;height:48px}
+.food b{font-size:.8rem;font-weight:700;line-height:1.15}
+.food i{font-style:normal;font-size:.7rem;color:var(--muted);line-height:1.15}
+.today{box-shadow:0 0 0 2px var(--accent) inset}
+footer{margin-top:34px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="face">
+      <circle cx="-6" cy="0" r="2.2" fill="#3A2340"/>
+      <circle cx="6" cy="0" r="2.2" fill="#3A2340"/>
+      <path d="M-3.5 4 Q0 7.5 3.5 4" stroke="#3A2340" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="-10" cy="4" r="2.4" fill="#FF8FA3" opacity=".7"/>
+      <circle cx="10" cy="4" r="2.4" fill="#FF8FA3" opacity=".7"/>
+    </g>
+    <symbol id="banana" viewBox="0 0 64 64">
+      <path d="M10 40 C 20 54, 46 52, 56 26 C 58 21, 53 19, 51 24 C 44 40, 26 44, 13 34 C 10 32, 8 36, 10 40Z" fill="#FFD54A" stroke="#C99A12" stroke-width="2"/>
+      <path d="M51 24 L54 15" stroke="#7A5A1E" stroke-width="3.5" stroke-linecap="round"/>
+      <use href="#face" transform="translate(33 40) scale(.8)"/>
+    </symbol>
+    <symbol id="maca" viewBox="0 0 64 64">
+      <path d="M32 20 C 22 12, 9 20, 11 36 C 13 51, 24 57, 32 53 C 40 57, 51 51, 53 36 C 55 20, 42 12, 32 20Z" fill="#EF4B5C" stroke="#B42638" stroke-width="2"/>
+      <path d="M32 20 C 32 14, 33 10, 35 8" stroke="#6B4423" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M35 13 C 41 6, 49 8, 50 11 C 45 16, 39 16, 35 13Z" fill="#5CB85C"/>
+      <use href="#face" transform="translate(32 36)"/>
+    </symbol>
+    <symbol id="pera" viewBox="0 0 64 64">
+      <path d="M32 11 C 25 11, 25 20, 24 25 C 15 31, 13 44, 19 51 C 25 58, 39 58, 45 51 C 51 44, 49 31, 40 25 C 39 20, 39 11, 32 11Z" fill="#C6DE5C" stroke="#7FA132" stroke-width="2"/>
+      <path d="M32 11 L33 4" stroke="#6B4423" stroke-width="3" stroke-linecap="round"/>
+      <path d="M33 7 C 38 2, 44 4, 44 6 C 40 10, 36 10, 33 7Z" fill="#5CB85C"/>
+      <use href="#face" transform="translate(32 41)"/>
+    </symbol>
+    <symbol id="manga" viewBox="0 0 64 64">
+      <defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF7A45"/><stop offset=".55" stop-color="#FFB547"/><stop offset="1" stop-color="#FFD54A"/></linearGradient></defs>
+      <ellipse cx="32" cy="35" rx="21" ry="17" transform="rotate(-25 32 35)" fill="url(#mg)" stroke="#D9752A" stroke-width="2"/>
+      <path d="M44 18 C 50 10, 58 12, 58 14 C 53 20, 48 20, 44 18Z" fill="#5CB85C"/>
+      <use href="#face" transform="translate(31 36)"/>
+    </symbol>
+    <symbol id="mamao" viewBox="0 0 64 64">
+      <ellipse cx="32" cy="34" rx="18" ry="25" fill="#9BCB5A" stroke="#6E9D33" stroke-width="2"/>
+      <ellipse cx="32" cy="34" rx="15" ry="22" fill="#FF8C42"/>
+      <ellipse cx="32" cy="40" rx="5.5" ry="9" fill="#C85A1E"/>
+      <circle cx="30" cy="36" r="1.8" fill="#2B1A12"/><circle cx="34" cy="39" r="1.8" fill="#2B1A12"/><circle cx="31" cy="43" r="1.8" fill="#2B1A12"/><circle cx="34" cy="45" r="1.6" fill="#2B1A12"/>
+      <use href="#face" transform="translate(32 23) scale(.75)"/>
+    </symbol>
+    <symbol id="morango" viewBox="0 0 64 64">
+      <path d="M32 58 C 20 50, 10 38, 12 27 C 13 20, 22 17, 32 20 C 42 17, 51 20, 52 27 C 54 38, 44 50, 32 58Z" fill="#E8304A" stroke="#A81E33" stroke-width="2"/>
+      <path d="M20 20 L26 12 L30 19 L32 9 L35 19 L39 12 L44 20 C 38 24, 26 24, 20 20Z" fill="#4CAF50"/>
+      <g fill="#FFE27A"><circle cx="20" cy="31" r="1.3"/><circle cx="44" cy="31" r="1.3"/><circle cx="25" cy="45" r="1.3"/><circle cx="39" cy="45" r="1.3"/><circle cx="32" cy="50" r="1.3"/><circle cx="18" cy="38" r="1.2"/><circle cx="46" cy="38" r="1.2"/></g>
+      <use href="#face" transform="translate(32 34)"/>
+    </symbol>
+    <symbol id="kiwi" viewBox="0 0 64 64">
+      <circle cx="32" cy="33" r="24" fill="#8B6A3E"/>
+      <circle cx="32" cy="33" r="20.5" fill="#9CCB3B"/>
+      <circle cx="32" cy="33" r="7" fill="#F3F7D6"/>
+      <g fill="#2B1A12"><circle cx="32" cy="21" r="1.4"/><circle cx="41" cy="25" r="1.4"/><circle cx="44" cy="34" r="1.4"/><circle cx="40" cy="43" r="1.4"/><circle cx="24" cy="43" r="1.4"/><circle cx="20" cy="34" r="1.4"/><circle cx="23" cy="25" r="1.4"/><circle cx="32" cy="46" r="1.4"/></g>
+      <g transform="translate(32 32) scale(.55)"><circle cx="-6" cy="0" r="2.2" fill="#3A2340"/><circle cx="6" cy="0" r="2.2" fill="#3A2340"/><path d="M-3.5 4 Q0 7.5 3.5 4" stroke="#3A2340" stroke-width="1.8" fill="none" stroke-linecap="round"/></g>
+    </symbol>
+    <symbol id="mandioquinha" viewBox="0 0 64 64">
+      <path d="M14 18 C 22 12, 34 16, 44 30 C 52 40, 56 50, 58 56 C 50 52, 40 46, 30 40 C 18 33, 8 26, 14 18Z" fill="#F7D774" stroke="#C9A43A" stroke-width="2"/>
+      <path d="M24 27 L28 24 M33 33 L37 30 M42 41 L45 38" stroke="#C9A43A" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M14 18 C 10 12, 12 8, 16 6 M14 18 C 8 16, 5 12, 6 8" stroke="#5CB85C" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <use href="#face" transform="translate(27 30) rotate(30) scale(.75)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main>
+  <header class="hero">
+    <h1>O cardápio da Lavínia</h1>
+    <p class="sub">Introdução alimentar desde 15 de outubro</p>
+    <div class="garland" id="garland" aria-hidden="true"></div>
+  </header>
+
+  <section aria-labelledby="ja">
+    <h2 id="ja">Já provou</h2>
+    <p class="hint">Toque numa comida para ver os dias em que ela apareceu.</p>
+    <div class="stickers" id="stickers"></div>
+    <button class="clear" id="clear" type="button">Mostrar todos os dias</button>
+  </section>
+
+  <section aria-labelledby="cal">
+    <h2 id="cal">Dia a dia</h2>
+    <div id="calendar"></div>
+  </section>
+
+  <footer>De 19/10 em diante a refeição não foi anotada.</footer>
+</main>
+
+<script>
+const FOODS = {
+  banana:{name:"Banana"}, maca:{name:"Maçã"}, mandioquinha:{name:"Mandioquinha"},
+  manga:{name:"Manga"}, pera:{name:"Pera"}, mamao:{name:"Mamão"},
+  morango:{name:"Morango"}, kiwi:{name:"Kiwi"}
+};
+const DAYS = [
+  {d:"15/10",w:"qui",items:[["banana","lanche manhã"],["banana","lanche tarde"]]},
+  {d:"16/10",w:"sex",items:[["maca","purê, lanche manhã"],["mandioquinha","almoço"],["banana","lanche tarde"]]},
+  {d:"17/10",w:"sáb",items:[["banana","lanche manhã"],["manga","lanche tarde"]]},
+  {d:"18/10",w:"dom",items:[["pera","lanche tarde"]]},
+  {d:"19/10",w:"seg",items:[["pera"]]},
+  {d:"20/10",w:"ter",items:[["mamao"]]},
+  {d:"21/10",w:"qua",items:[["banana"],["morango"]]},
+  {d:"22/10",w:"qui",items:[["kiwi"],["mamao"]]},
+  {d:"23/10",w:"sex",items:[["banana"],["manga"]]},
+  {d:"24/10",w:"sáb",items:[["maca"],["kiwi"],["banana"]]},
+  {d:"25/10",w:"dom",items:[["banana"]]}
+];
+const WEEKS = [["Semana de 12 a 18/10",0,4],["Semana de 19 a 25/10",4,11]];
+const icon = k => `<svg viewBox="0 0 64 64" role="img" aria-label="${FOODS[k].name}"><use href="#${k}"/></svg>`;
+
+// first try + count
+const first = {}, count = {};
+DAYS.forEach(day => day.items.forEach(([k]) => { first[k] ??= day.d; count[k] = (count[k]||0)+1; }));
+const order = Object.keys(FOODS).sort((a,b)=>DAYS.findIndex(x=>x.d===first[a]) - DAYS.findIndex(x=>x.d===first[b]));
+
+document.getElementById("garland").innerHTML =
+  order.map((k,i)=>`<svg viewBox="0 0 64 64" style="animation-delay:${i*70}ms"><use href="#${k}"/></svg>`).join("");
+
+const st = document.getElementById("stickers");
+st.innerHTML = order.map(k=>`<button class="sticker" type="button" data-k="${k}" aria-pressed="false">${icon(k)}<span><b>${FOODS[k].name}</b><small>desde ${first[k]}, ${count[k]}×</small></span></button>`).join("");
+
+const today = (()=>{const t=new Date();return String(t.getDate()).padStart(2,"0")+"/"+String(t.getMonth()+1).padStart(2,"0")})();
+document.getElementById("calendar").innerHTML = WEEKS.map(([t,a,b])=>`
+  <div class="week"><h3>${t}</h3>${DAYS.slice(a,b).map(day=>`
+    <div class="day${day.d===today?" today":""}" data-foods="${day.items.map(i=>i[0]).join(" ")}">
+      <div class="date"><strong>${day.d.slice(0,2)}</strong><span>${day.w}</span></div>
+      <div class="foods">${day.items.map(([k,m])=>`<div class="food">${icon(k)}<b>${FOODS[k].name}</b>${m?`<i>${m}</i>`:""}</div>`).join("")}</div>
+    </div>`).join("")}</div>`).join("");
+
+let active = null;
+const clear = document.getElementById("clear");
+function apply(){
+  st.querySelectorAll(".sticker").forEach(b=>b.setAttribute("aria-pressed", b.dataset.k===active));
+  document.querySelectorAll(".day").forEach(el=>el.classList.toggle("dim", !!active && !el.dataset.foods.split(" ").includes(active)));
+  clear.classList.toggle("on", !!active);
+}
+st.addEventListener("click", e=>{const b=e.target.closest(".sticker"); if(!b) return; active = active===b.dataset.k ? null : b.dataset.k; apply();});
+clear.addEventListener("click", ()=>{active=null; apply();});
+</script>
+</body>
+</html>
