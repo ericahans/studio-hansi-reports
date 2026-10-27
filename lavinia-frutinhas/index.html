@@ -137,6 +137,20 @@ footer{margin-top:34px;color:var(--muted);font-size:.85rem}
       <ellipse cx="32" cy="37" rx="12" ry="9" fill="#F6A23A" opacity=".92"/>
       <use href="#face" transform="translate(32 36) scale(.85)"/>
     </symbol>
+    <symbol id="feijao" viewBox="0 0 64 64">
+      <g fill="#2A1E24" stroke="#140E12" stroke-width="1"><ellipse cx="20" cy="27" rx="5" ry="3.4" transform="rotate(-20 20 27)"/><ellipse cx="30" cy="23" rx="5" ry="3.4" transform="rotate(15 30 23)"/><ellipse cx="40" cy="25" rx="5" ry="3.4" transform="rotate(-10 40 25)"/><ellipse cx="47" cy="29" rx="4.6" ry="3.2" transform="rotate(25 47 29)"/><ellipse cx="26" cy="30" rx="4.6" ry="3.2" transform="rotate(30 26 30)"/><ellipse cx="36" cy="30" rx="4.6" ry="3.2"/></g>
+      <path d="M7 30 H57 C 56 46, 46 56, 32 56 C 18 56, 8 46, 7 30Z" fill="#E9845A" stroke="#B5562F" stroke-width="2"/>
+      <path d="M7 30 H57" stroke="#B5562F" stroke-width="3" stroke-linecap="round"/>
+      <use href="#face" transform="translate(32 41)"/>
+    </symbol>
+    <symbol id="abobrinha" viewBox="0 0 64 64">
+      <g transform="rotate(-35 32 34)">
+        <rect x="6" y="24" width="50" height="20" rx="10" fill="#5E9E3A" stroke="#3C6E22" stroke-width="2"/>
+        <path d="M14 30 H46 M16 38 H44" stroke="#8CC660" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+        <rect x="54" y="30" width="6" height="8" rx="2" fill="#8A6A3A"/>
+      </g>
+      <use href="#face" transform="translate(30 36) rotate(-35) scale(.8)"/>
+    </symbol>
   </defs>
 </svg>
 
@@ -166,7 +180,8 @@ footer{margin-top:34px;color:var(--muted);font-size:.85rem}
 const FOODS = {
   banana:{name:"Banana"}, maca:{name:"Maçã"}, mandioquinha:{name:"Mandioquinha"},
   manga:{name:"Manga"}, pera:{name:"Pera"}, mamao:{name:"Mamão"},
-  morango:{name:"Morango"}, kiwi:{name:"Kiwi"}, abobora:{name:"Abóbora cabotiá"}
+  morango:{name:"Morango"}, kiwi:{name:"Kiwi"}, abobora:{name:"Abóbora cabotiá"},
+  feijao:{name:"Feijão preto"}, abobrinha:{name:"Abobrinha"}
 };
 const DAYS = [
   {d:"15/10",w:"qui",items:[["banana","lanche manhã"],["banana","lanche tarde"]]},
@@ -180,7 +195,8 @@ const DAYS = [
   {d:"23/10",w:"sex",items:[["banana"],["manga"]]},
   {d:"24/10",w:"sáb",items:[["maca"],["kiwi"],["banana"]]},
   {d:"25/10",w:"dom",items:[["banana"]]},
-  {d:"26/10",w:"seg",items:[["mamao","lanche manhã"],["abobora","almoço"]]}
+  {d:"26/10",w:"seg",items:[["mamao","lanche manhã"],["abobora","almoço"],["maca"]]},
+  {d:"27/10",w:"ter",items:[["banana","lanche manhã"],["feijao"],["abobrinha"]]}
 ];
 const WEEKS = [["Semana de 12 a 18/10",0,4],["Semana de 19 a 25/10",4,11],["Semana de 26/10 a 01/11",11,18]];
 const icon = k => `<svg viewBox="0 0 64 64" role="img" aria-label="${FOODS[k].name}"><use href="#${k}"/></svg>`;
